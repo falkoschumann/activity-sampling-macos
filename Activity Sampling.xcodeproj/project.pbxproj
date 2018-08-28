@@ -272,7 +272,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Activity Sampling/Activity_Sampling.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 2SG8ESKTTW;
+				DEVELOPMENT_TEAM = QC6EN37P56;
 				INFOPLIST_FILE = "Activity Sampling/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -291,7 +291,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Activity Sampling/Activity_Sampling.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 2SG8ESKTTW;
+				DEVELOPMENT_TEAM = QC6EN37P56;
 				INFOPLIST_FILE = "Activity Sampling/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
