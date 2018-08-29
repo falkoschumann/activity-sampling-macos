@@ -10,18 +10,18 @@ import Foundation
 
 protocol ClockDelegate {
     
-    func onCurrentTime(_: Date)
-
+    func clockDidTick(_ clock: Clock, currentTime: Date)
+    
 }
 
 class Clock {
-
+    
     var delegate: ClockDelegate?
     
     init() {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            self.delegate?.onCurrentTime(Date())
+            self.delegate?.clockDidTick(self, currentTime: Date())
         }
     }
-
+    
 }

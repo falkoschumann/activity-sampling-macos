@@ -810,6 +810,10 @@ DQ
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentActivity" destination="GG0-59-eFZ" id="uvD-dn-UOe"/>
+                        <outlet property="currentActivityLabel" destination="563-Jb-8y8" id="g3d-yY-RLp"/>
+                        <outlet property="elapsedTime" destination="niV-rd-MHT" id="Hdz-51-VyF"/>
+                        <outlet property="logCurrentActivity" destination="ACO-wM-22I" id="V6Z-5u-bfu"/>
                         <outlet property="remainingTime" destination="PEF-QC-cUY" id="C4q-Aa-Vxn"/>
                     </connections>
                 </viewController>
