@@ -14,7 +14,9 @@ protocol ActivityLogDelegate {
     
     func periodDidProgress(_ activityLog: ActivityLog, elapsedTime: TimeInterval, remainingTime: TimeInterval)
     
-    func periodDidEnd(_ activityLog: ActivityLog, timestamp: Date)
+    func periodDidEnd(_ activityLog: ActivityLog)
+    
+    func activityDidLog(_ activityLog: ActivityLog, activity: Activity)
 
 }
 
@@ -24,6 +26,8 @@ class ActivityLog : ClockDelegate, PeriodDelegate {
     
     private let clock = Clock()
     private let period = Period()
+    
+    private var timestamp: Date?
 
     init() {
         clock.delegate = self
@@ -32,6 +36,10 @@ class ActivityLog : ClockDelegate, PeriodDelegate {
     
     func start() {
         period.start()
+    }
+    
+    func logCurrentActivity(_ currentActivity: String) {
+        delegate?.activityDidLog(self, activity: Activity(timestamp: timestamp!, title: currentActivity))
     }
     
     // MARK: Clock Delegate
@@ -51,7 +59,8 @@ class ActivityLog : ClockDelegate, PeriodDelegate {
     }
     
     func periodDidEnd(_ period: Period, timestamp: Date) {
-        delegate?.periodDidEnd(self, timestamp: timestamp)
+        self.timestamp = timestamp
+        delegate?.periodDidEnd(self)
     }
     
 }

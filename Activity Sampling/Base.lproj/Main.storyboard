@@ -738,6 +738,9 @@
 DQ
 </string>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="logActivity:" target="XfG-lQ-9wD" id="Fe0-sW-5ln"/>
+                                        </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PEF-QC-cUY">
                                         <rect key="frame" x="-2" y="383" width="348" height="17"/>
@@ -748,19 +751,19 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="niV-rd-MHT">
-                                        <rect key="frame" x="0.0" y="352" width="344" height="24"/>
+                                        <rect key="frame" x="0.0" y="353" width="344" height="23"/>
                                     </progressIndicator>
                                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QoR-sr-OvS">
-                                        <rect key="frame" x="0.0" y="0.0" width="344" height="345"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="346"/>
                                         <clipView key="contentView" id="HQa-lV-KiC">
-                                            <rect key="frame" x="1" y="1" width="342" height="343"/>
+                                            <rect key="frame" x="1" y="1" width="342" height="344"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="XUA-2h-Ngv">
-                                                    <rect key="frame" x="0.0" y="-1" width="342" height="343"/>
+                                                    <rect key="frame" x="0.0" y="-1" width="342" height="344"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="342" height="343"/>
+                                                    <size key="minSize" width="342" height="344"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
                                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </textView>
@@ -772,7 +775,7 @@ DQ
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="SBf-kX-69n">
-                                            <rect key="frame" x="327" y="1" width="16" height="343"/>
+                                            <rect key="frame" x="327" y="1" width="16" height="344"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -810,10 +813,11 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="currentActivity" destination="GG0-59-eFZ" id="uvD-dn-UOe"/>
-                        <outlet property="currentActivityLabel" destination="563-Jb-8y8" id="g3d-yY-RLp"/>
+                        <outlet property="activity" destination="GG0-59-eFZ" id="uvD-dn-UOe"/>
+                        <outlet property="activityLabel" destination="563-Jb-8y8" id="g3d-yY-RLp"/>
                         <outlet property="elapsedTime" destination="niV-rd-MHT" id="Hdz-51-VyF"/>
-                        <outlet property="logCurrentActivity" destination="ACO-wM-22I" id="V6Z-5u-bfu"/>
+                        <outlet property="log" destination="XUA-2h-Ngv" id="Fai-vB-xkF"/>
+                        <outlet property="logActivity" destination="ACO-wM-22I" id="V6Z-5u-bfu"/>
                         <outlet property="remainingTime" destination="PEF-QC-cUY" id="C4q-Aa-Vxn"/>
                     </connections>
                 </viewController>

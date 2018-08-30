@@ -10,7 +10,6 @@ started or continued.
 Backlog
 -------
 
-*   Log current activity.
 *   Ask for current activity with alert notification.
 *   Rotation activity log as CSV files.
 *   Preferences with
