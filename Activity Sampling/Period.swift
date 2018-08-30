@@ -10,7 +10,7 @@ import Foundation
 
 protocol PeriodDelegate {
     
-    func periodDidStart(_ period: Period)
+    func periodDidStart(_ period: Period, duration: TimeInterval)
     
     func periodDidProgress(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval)
     
@@ -28,7 +28,7 @@ class Period {
     
     func start(currentTime: Date = Date()) {
         start = currentTime
-        delegate?.periodDidStart(self)
+        delegate?.periodDidStart(self, duration: duration)
     }
     
     func check(currentTime: Date = Date()) {

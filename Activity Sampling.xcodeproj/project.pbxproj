@@ -13,6 +13,7 @@
 		CC25635221359B0400D59D17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC25635021359B0400D59D17 /* Main.storyboard */; };
 		CCC1BA38213686C900029006 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA37213686C900029006 /* Clock.swift */; };
 		CCC1BA3A2136A64800029006 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA392136A64800029006 /* Period.swift */; };
+		CCE6B29D2137E7C400941584 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6B29C2137E7C400941584 /* ActivityLog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		CC25635421359B0400D59D17 /* Activity_Sampling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Activity_Sampling.entitlements; sourceTree = "<group>"; };
 		CCC1BA37213686C900029006 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		CCC1BA392136A64800029006 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
+		CCE6B29C2137E7C400941584 /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				CC25634A21359B0100D59D17 /* AppDelegate.swift */,
 				CCC1BA37213686C900029006 /* Clock.swift */,
 				CCC1BA392136A64800029006 /* Period.swift */,
+				CCE6B29C2137E7C400941584 /* ActivityLog.swift */,
 				CC25634C21359B0100D59D17 /* ActivityLogController.swift */,
 				CC25634E21359B0400D59D17 /* Assets.xcassets */,
 				CC25635021359B0400D59D17 /* Main.storyboard */,
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE6B29D2137E7C400941584 /* ActivityLog.swift in Sources */,
 				CCC1BA38213686C900029006 /* Clock.swift in Sources */,
 				CC25634D21359B0100D59D17 /* ActivityLogController.swift in Sources */,
 				CCC1BA3A2136A64800029006 /* Period.swift in Sources */,

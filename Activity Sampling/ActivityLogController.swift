@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ActivityLogController: NSViewController, ClockDelegate, PeriodDelegate {
+class ActivityLogController: NSViewController, ActivityLogDelegate {
     
     @IBOutlet weak var currentActivityLabel: NSTextField!
     @IBOutlet weak var currentActivity: NSTextField!
@@ -17,15 +17,18 @@ class ActivityLogController: NSViewController, ClockDelegate, PeriodDelegate {
     @IBOutlet weak var remainingTime: NSTextField!
     @IBOutlet weak var elapsedTime: NSProgressIndicator!
     
-    private let clock = Clock()
-    private let period = Period()
+    private let remainingTimeFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        clock.delegate = self
-        period.delegate = self
-        period.start()
+        let activityLog = ActivityLog()
+        activityLog.delegate = self
+        activityLog.start()
+        
+        remainingTimeFormatter.dateStyle = .none
+        remainingTimeFormatter.timeStyle = .medium
+        remainingTimeFormatter.timeZone = TimeZone(identifier: "UTC");
     }
     
     override var representedObject: Any? {
@@ -34,41 +37,35 @@ class ActivityLogController: NSViewController, ClockDelegate, PeriodDelegate {
         }
     }
     
-    // MARK: Clock Delegate
-    
-    func clockDidTick(_ clock: Clock, currentTime: Date) {
-        period.check(currentTime: currentTime)
+    private func resetElapsedTime(_ duration: TimeInterval) {
+        elapsedTime.maxValue = duration;
+        updatePeriodProgess(0, duration);
     }
     
-    // MARK: Period Delegate
-    
-    func periodDidStart(_ period: Period) {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .medium
-        formatter.timeZone = TimeZone(identifier: "UTC");
-        remainingTime.stringValue = formatter.string(from: Date(timeIntervalSinceReferenceDate: period.duration))
-        
-        elapsedTime.maxValue = period.duration;
-        elapsedTime.doubleValue = 0;
+    private func updatePeriodProgess(_ elapsedTime: TimeInterval, _ remainingTime: TimeInterval) {
+        self.elapsedTime.doubleValue = elapsedTime;
+        self.remainingTime.stringValue = remainingTimeFormatter.string(from: Date(timeIntervalSinceReferenceDate: remainingTime))
     }
     
-    func periodDidProgress(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .medium
-        formatter.timeZone = TimeZone(identifier: "UTC");
-        self.remainingTime.stringValue = formatter.string(from: Date(timeIntervalSinceReferenceDate: remainingTime))
-        
-        self.elapsedTime.doubleValue = elapsedTime
-    }
-    
-    func periodDidEnd(_ period: Period, timestamp: Date) {
+    private func askForCurrentActivity(_ timestamp: Date) {
         currentActivityLabel.isEnabled = true
         currentActivity.isEnabled = true
         logCurrentActivity.isEnabled = true
-        
         currentActivity.becomeFirstResponder()
+    }
+    
+    // MARK: Activity Log Delegate
+    
+    func periodDidStart(_ activityLog: ActivityLog, duration: TimeInterval) {
+        resetElapsedTime(duration)
+    }
+    
+    func periodDidProgress(_ activityLog: ActivityLog, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
+        updatePeriodProgess(elapsedTime, remainingTime);
+    }
+    
+    func periodDidEnd(_ activityLog: ActivityLog, timestamp: Date) {
+        askForCurrentActivity(timestamp)
     }
     
 }
