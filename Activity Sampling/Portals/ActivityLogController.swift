@@ -21,7 +21,6 @@ class ActivityLogController: NSViewController, ActivityLogDelegate {
     
     private let remainingTimeFormatter = createRemainingTimeFormatter()
     
-    private let activityLog = ActivityLog()
     private var lastActivity: Activity?
     
     static func createRemainingTimeFormatter() -> DateFormatter {
@@ -35,8 +34,8 @@ class ActivityLogController: NSViewController, ActivityLogDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityLog.delegate = self
-        activityLog.start()
+        App.shared.activityLogDelegate = self
+        resetElapsedTime(App.shared.periodDuration)
     }
     
     override var representedObject: Any? {
@@ -46,7 +45,7 @@ class ActivityLogController: NSViewController, ActivityLogDelegate {
     }
     
     @IBAction func logActivity(_ sender: Any) {
-        activityLog.logCurrentActivity(activity.stringValue)
+        App.shared.logCurrentActivity(activity.stringValue)
         activityLabel.isEnabled = false
         activity.isEnabled = false
         logActivity.isEnabled = false
@@ -63,6 +62,14 @@ class ActivityLogController: NSViewController, ActivityLogDelegate {
     }
     
     private func askForCurrentActivity() {
+        let notification = NSUserNotification()
+        notification.title = "What are you working on?"
+        notification.informativeText = "Lorem ipsum ..."
+        notification.subtitle = "Untertitel"
+        notification.soundName = NSUserNotificationDefaultSoundName
+        let notificationCenter = NSUserNotificationCenter.default
+        notificationCenter.deliver(notification)
+
         activityLabel.isEnabled = true
         activity.isEnabled = true
         logActivity.isEnabled = true
@@ -92,19 +99,19 @@ class ActivityLogController: NSViewController, ActivityLogDelegate {
     
     // MARK: Activity Log Delegate
     
-    func periodDidStart(_ activityLog: ActivityLog, duration: TimeInterval) {
+    func periodDidStart(_ activityLog: App, duration: TimeInterval) {
         resetElapsedTime(duration)
     }
     
-    func periodDidProgress(_ activityLog: ActivityLog, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
+    func periodDidProgress(_ activityLog: App, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
         updatePeriodProgess(elapsedTime, remainingTime);
     }
     
-    func periodDidEnd(_ activityLog: ActivityLog) {
+    func periodDidEnd(_ activityLog: App) {
         askForCurrentActivity()
     }
     
-    func activityDidLog(_ activityLog: ActivityLog, activity: Activity) {
+    func activityDidLog(_ activityLog: App, activity: Activity) {
         ifIsNewDay(timestamp: activity.timestamp, then: printDay);
         printActivity(activity)
         lastActivity = activity

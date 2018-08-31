@@ -10,19 +10,26 @@ import Foundation
 
 protocol ActivityLogDelegate {
     
-    func periodDidStart(_ activityLog: ActivityLog, duration: TimeInterval)
+    func periodDidStart(_ activityLog: App, duration: TimeInterval)
     
-    func periodDidProgress(_ activityLog: ActivityLog, elapsedTime: TimeInterval, remainingTime: TimeInterval)
+    func periodDidProgress(_ activityLog: App, elapsedTime: TimeInterval, remainingTime: TimeInterval)
     
-    func periodDidEnd(_ activityLog: ActivityLog)
+    func periodDidEnd(_ activityLog: App)
     
-    func activityDidLog(_ activityLog: ActivityLog, activity: Activity)
+    func activityDidLog(_ activityLog: App, activity: Activity)
 
 }
 
-class ActivityLog : ClockDelegate, PeriodDelegate {
+class App : ClockDelegate, PeriodDelegate {
     
-    var delegate: ActivityLogDelegate?
+    static let shared = App()
+    
+    var activityLogDelegate: ActivityLogDelegate?
+
+    var periodDuration: TimeInterval {
+        get { return period.duration }
+        set { period.duration = newValue }
+    }
     
     private let clock = Clock()
     private let period = Period()
@@ -32,14 +39,11 @@ class ActivityLog : ClockDelegate, PeriodDelegate {
     init() {
         clock.delegate = self
         period.delegate = self
-    }
-    
-    func start() {
         period.start()
     }
     
     func logCurrentActivity(_ currentActivity: String) {
-        delegate?.activityDidLog(self, activity: Activity(timestamp: timestamp!, title: currentActivity))
+        activityLogDelegate?.activityDidLog(self, activity: Activity(timestamp: timestamp!, title: currentActivity))
     }
     
     // MARK: Clock Delegate
@@ -51,16 +55,16 @@ class ActivityLog : ClockDelegate, PeriodDelegate {
     // MARK: Period Delegate
     
     func periodDidStart(_ period: Period, duration: TimeInterval) {
-        delegate?.periodDidStart(self, duration: duration)
+        activityLogDelegate?.periodDidStart(self, duration: duration)
     }
     
     func periodDidProgress(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
-        delegate?.periodDidProgress(self, elapsedTime: elapsedTime, remainingTime: remainingTime)
+        activityLogDelegate?.periodDidProgress(self, elapsedTime: elapsedTime, remainingTime: remainingTime)
     }
     
     func periodDidEnd(_ period: Period, timestamp: Date) {
         self.timestamp = timestamp
-        delegate?.periodDidEnd(self)
+        activityLogDelegate?.periodDidEnd(self)
     }
     
 }
