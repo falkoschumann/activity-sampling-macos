@@ -15,5 +15,4 @@ Backlog
     *   Period duration and
     *   Path to CSV directory.
 *   Clean up menu.
-*   Quit application when window closed.
 *   Publish to App Store.

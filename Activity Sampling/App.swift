@@ -32,6 +32,15 @@ class App: PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate, ClockDel
         clock.delegate = self
         log.delegate = self
     }
+    
+    func start() {
+        clock.start()
+    }
+    
+    func stop() {
+        clock.stop()
+        activityDemand.hideNotification()
+    }
         
     // MARK: Period Delegate
     

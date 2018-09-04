@@ -67,7 +67,7 @@ class ActivityDemand: NSObject, NSUserNotificationCenterDelegate {
         hideNotification()
     }
     
-    private func hideNotification() {
+    func hideNotification() {
         if let notification = lastNotification {
             let notificationCenter = NSUserNotificationCenter.default
             notificationCenter.removeDeliveredNotification(notification)

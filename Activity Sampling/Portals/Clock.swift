@@ -18,10 +18,16 @@ class Clock {
     
     var delegate: ClockDelegate?
     
-    init() {
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+    private var timer: Timer!
+    
+    func start() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
             self.delegate?.clockDidTick(self, currentTime: Date())
         }
+    }
+    
+    func stop() {
+        timer.invalidate()
     }
     
 }
