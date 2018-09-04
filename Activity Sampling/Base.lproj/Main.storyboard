@@ -757,7 +757,7 @@ DQ
                                         <rect key="frame" x="0.0" y="0.0" width="344" height="346"/>
                                         <clipView key="contentView" id="HQa-lV-KiC">
                                             <rect key="frame" x="1" y="1" width="342" height="344"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="XUA-2h-Ngv">
                                                     <rect key="frame" x="0.0" y="-1" width="342" height="344"/>
@@ -813,8 +813,8 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="activity" destination="GG0-59-eFZ" id="uvD-dn-UOe"/>
-                        <outlet property="activityLabel" destination="563-Jb-8y8" id="g3d-yY-RLp"/>
+                        <outlet property="activityTitle" destination="GG0-59-eFZ" id="uvD-dn-UOe"/>
+                        <outlet property="activityTitleLabel" destination="563-Jb-8y8" id="g3d-yY-RLp"/>
                         <outlet property="elapsedTime" destination="niV-rd-MHT" id="Hdz-51-VyF"/>
                         <outlet property="log" destination="XUA-2h-Ngv" id="Fai-vB-xkF"/>
                         <outlet property="logActivity" destination="ACO-wM-22I" id="V6Z-5u-bfu"/>

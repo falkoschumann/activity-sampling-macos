@@ -24,22 +24,23 @@ class Period {
     
     var duration: TimeInterval = 60
     
-    private var start = Date()
+    private var start: Date!
     
-    func start(currentTime: Date = Date()) {
-        start = currentTime
-        delegate?.periodDidStart(self, duration: duration)
-    }
-    
-    func check(currentTime: Date = Date()) {
+    func check(_ currentTime: Date) {
+        guard start != nil else {
+            start = currentTime
+            delegate?.periodDidStart(self, duration: duration)
+            return
+        }
+        
         let elapsedTime = currentTime.timeIntervalSince(start)
         let remainingTime = duration - elapsedTime
-        
         if remainingTime > 0 {
             delegate?.periodDidProgress(self, elapsedTime: elapsedTime, remainingTime: remainingTime)
         } else {
             delegate?.periodDidEnd(self, timestamp: currentTime)
-            start(currentTime: currentTime)
+            self.start = currentTime
+            delegate?.periodDidStart(self, duration: duration)
         }
     }
     

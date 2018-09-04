@@ -8,10 +8,10 @@
 
 import Cocoa
 
-class ActivityLogController: NSViewController, ActivityLogDelegate {
+class ActivityLogController: NSViewController, ActivityLog {
     
-    @IBOutlet weak var activityLabel: NSTextField!
-    @IBOutlet weak var activity: NSTextField!
+    @IBOutlet weak var activityTitleLabel: NSTextField!
+    @IBOutlet weak var activityTitle: NSTextField!
     @IBOutlet weak var logActivity: NSButton!
     
     @IBOutlet weak var remainingTime: NSTextField!
@@ -19,11 +19,14 @@ class ActivityLogController: NSViewController, ActivityLogDelegate {
     
     @IBOutlet var log: NSTextView!
     
+    var delegate: ActivityLogDelegate?
+    
     private let remainingTimeFormatter = createRemainingTimeFormatter()
     
+    private var timestamp: Date?
     private var lastActivity: Activity?
     
-    static func createRemainingTimeFormatter() -> DateFormatter {
+    private static func createRemainingTimeFormatter() -> DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .none
         formatter.timeStyle = .medium
@@ -33,22 +36,17 @@ class ActivityLogController: NSViewController, ActivityLogDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        App.shared.activityLogDelegate = self
-        resetElapsedTime(App.shared.periodDuration)
+                
+        App.shared.activityLog = self
     }
     
-    override var representedObject: Any? {
-        didSet {
-            // Update the view, if already loaded.
-        }
+    override func viewDidAppear() {
+        super.viewDidAppear()
     }
     
     @IBAction func logActivity(_ sender: Any) {
-        App.shared.logCurrentActivity(activity.stringValue)
-        activityLabel.isEnabled = false
-        activity.isEnabled = false
-        logActivity.isEnabled = false
+        let activity = Activity(timestamp: timestamp!, title: self.activityTitle.stringValue)
+        delegate?.log(activity)
     }
     
     private func resetElapsedTime(_ duration: TimeInterval) {
@@ -61,24 +59,17 @@ class ActivityLogController: NSViewController, ActivityLogDelegate {
         self.remainingTime.stringValue = remainingTimeFormatter.string(from: Date(timeIntervalSinceReferenceDate: remainingTime))
     }
     
-    private func askForCurrentActivity() {
-        let notification = NSUserNotification()
-        notification.title = "What are you working on?"
-        notification.informativeText = "Lorem ipsum ..."
-        notification.subtitle = "Untertitel"
-        notification.soundName = NSUserNotificationDefaultSoundName
-        let notificationCenter = NSUserNotificationCenter.default
-        notificationCenter.deliver(notification)
-
-        activityLabel.isEnabled = true
-        activity.isEnabled = true
+    private func askForCurrentActivity(timestamp: Date) {
+        self.timestamp = timestamp
+        activityTitleLabel.isEnabled = true
+        activityTitle.isEnabled = true
         logActivity.isEnabled = true
-        activity.becomeFirstResponder()
+        activityTitle.becomeFirstResponder()
     }
     
-    private func ifIsNewDay(timestamp: Date, then: (Date) -> Void) {
+    private func ifIsNewDay(_ timestamp: Date, then: (Date) -> Void) {
         let calendar = Calendar.current;
-        if (lastActivity == nil || calendar.compare(lastActivity!.timestamp, to: timestamp, toGranularity: .day) != .orderedSame) {
+        if lastActivity == nil || calendar.compare(lastActivity!.timestamp, to: timestamp, toGranularity: .day) != .orderedSame {
             then(timestamp)
         }
     }
@@ -90,6 +81,13 @@ class ActivityLogController: NSViewController, ActivityLogDelegate {
     }
     
     private func printActivity(_ activity: Activity) {
+        lastActivity = activity
+        
+        activityTitleLabel.isEnabled = false
+        self.activityTitle.stringValue = activity.title
+        self.activityTitle.isEnabled = false
+        logActivity.isEnabled = false
+        
         let timestamp = DateFormatter.localizedString(from: activity.timestamp, dateStyle: .none, timeStyle: .short)
         log.textStorage?.append(NSAttributedString(string: timestamp))
         log.textStorage?.append(NSAttributedString(string: " - "))
@@ -97,24 +95,23 @@ class ActivityLogController: NSViewController, ActivityLogDelegate {
         log.textStorage?.append(NSAttributedString(string: "\n"))
     }
     
-    // MARK: Activity Log Delegate
+    // MARK: Activity Log
     
-    func periodDidStart(_ activityLog: App, duration: TimeInterval) {
+    func periodDidStart(duration: TimeInterval) {
         resetElapsedTime(duration)
     }
     
-    func periodDidProgress(_ activityLog: App, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
+    func periodDidProgress(elapsedTime: TimeInterval, remainingTime: TimeInterval) {
         updatePeriodProgess(elapsedTime, remainingTime);
     }
     
-    func periodDidEnd(_ activityLog: App) {
-        askForCurrentActivity()
+    func periodDidEnd(timestamp: Date) {
+        askForCurrentActivity(timestamp: timestamp)
     }
     
-    func activityDidLog(_ activityLog: App, activity: Activity) {
-        ifIsNewDay(timestamp: activity.timestamp, then: printDay);
+    func activityDidLog(activity: Activity) {
+        ifIsNewDay(activity.timestamp, then: printDay);
         printActivity(activity)
-        lastActivity = activity
     }
     
 }

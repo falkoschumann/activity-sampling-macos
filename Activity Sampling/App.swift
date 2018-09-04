@@ -1,5 +1,5 @@
 //
-//  ActivityLog.swift
+//  App.swift
 //  Activity Sampling
 //
 //  Created by Falko Schumann on 30.08.18.
@@ -8,63 +8,77 @@
 
 import Foundation
 
-protocol ActivityLogDelegate {
-    
-    func periodDidStart(_ activityLog: App, duration: TimeInterval)
-    
-    func periodDidProgress(_ activityLog: App, elapsedTime: TimeInterval, remainingTime: TimeInterval)
-    
-    func periodDidEnd(_ activityLog: App)
-    
-    func activityDidLog(_ activityLog: App, activity: Activity)
-
-}
-
-class App : ClockDelegate, PeriodDelegate {
+class App: PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate, ClockDelegate, LogDelegate {
     
     static let shared = App()
     
-    var activityLogDelegate: ActivityLogDelegate?
-
-    var periodDuration: TimeInterval {
-        get { return period.duration }
-        set { period.duration = newValue }
+    var activityLog: ActivityLog? {
+        willSet(newValue) {
+            newValue?.periodDidStart(duration: period.duration)
+        }
+        didSet(oldValue) {
+            activityLog?.delegate = self
+        }
     }
     
-    private let clock = Clock()
     private let period = Period()
+    private let activityDemand = ActivityDemand()
+    private let clock = Clock()
+    private let log = Log()
     
-    private var timestamp: Date?
-
     init() {
-        clock.delegate = self
         period.delegate = self
-        period.start()
+        activityDemand.delegate = self
+        clock.delegate = self
+        log.delegate = self
     }
-    
-    func logCurrentActivity(_ currentActivity: String) {
-        activityLogDelegate?.activityDidLog(self, activity: Activity(timestamp: timestamp!, title: currentActivity))
-    }
-    
-    // MARK: Clock Delegate
-    
-    func clockDidTick(_ clock: Clock, currentTime: Date) {
-        period.check(currentTime: currentTime)
-    }
-    
+        
     // MARK: Period Delegate
     
     func periodDidStart(_ period: Period, duration: TimeInterval) {
-        activityLogDelegate?.periodDidStart(self, duration: duration)
+        activityLog?.periodDidStart(duration: duration)
     }
     
     func periodDidProgress(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
-        activityLogDelegate?.periodDidProgress(self, elapsedTime: elapsedTime, remainingTime: remainingTime)
+        activityLog?.periodDidProgress(elapsedTime: elapsedTime, remainingTime: remainingTime)
     }
     
     func periodDidEnd(_ period: Period, timestamp: Date) {
-        self.timestamp = timestamp
-        activityLogDelegate?.periodDidEnd(self)
+        activityLog?.periodDidEnd(timestamp: timestamp)
+        log.periodDidEnd(timestamp: timestamp)
+    }
+    
+    // MARK: Activity Demand Delegate and Activity Log Delegate
+
+    func log(_ activity: Activity) {
+        log.log(activity)
+    }
+    
+    // MARK: Activity Demand Delegate
+    
+    func logOtherActivity() {
+        // nothing to do
+    }
+
+    // MARK: Clock Delegate
+    
+    func clockDidTick(_ clock: Clock, currentTime: Date) {
+        period.check(currentTime)
+    }
+    
+    // MARK: Log Delegate
+
+    func logFirstActivity(timestamp: Date) {
+        activityDemand.logFirstActivity(timestamp: timestamp)
+    }
+    
+    func shouldLogSameActivity(_ lastActivity: Activity) {
+        activityDemand.shouldLogSameActivity(lastActivity)
+    }
+
+    func activityDidLog(_ log: Log, activity: Activity) {
+        activityDemand.activityDidLog(activity)
+        activityLog?.activityDidLog(activity: activity)        
     }
     
 }
