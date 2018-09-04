@@ -14,5 +14,4 @@ Backlog
 *   Preferences with
     *   Period duration and
     *   Path to CSV directory.
-*   Clean up menu.
 *   Publish to App Store.
