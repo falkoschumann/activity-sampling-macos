@@ -10,7 +10,6 @@ started or continued.
 Backlog
 -------
 
-*   Close or update open notifcations after period end.
 *   Rotation activity log as CSV files.
 *   Preferences with
     *   Period duration and

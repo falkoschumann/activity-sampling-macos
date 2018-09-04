@@ -1,3 +1,6 @@
 # Xcode
 xcuserdata/
 
+# Output
+/doc/*.html
+
