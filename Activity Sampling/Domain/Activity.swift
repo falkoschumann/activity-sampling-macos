@@ -12,6 +12,8 @@ struct Activity {
     
     let timestamp: Date
     
+    let period: TimeInterval
+    
     let title: String
 
 }

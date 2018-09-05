@@ -40,7 +40,7 @@ class ActivityLogController: NSViewController, ActivityLog {
     }
     
     @IBAction func logActivity(_ sender: Any) {
-        let activity = Activity(timestamp: timestamp!, title: self.activityTitle.stringValue)
+        let activity = Activity(timestamp: timestamp!, period: elapsedTime.maxValue, title: self.activityTitle.stringValue)
         delegate?.log(activity)
     }
     

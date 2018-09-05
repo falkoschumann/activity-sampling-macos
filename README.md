@@ -10,6 +10,7 @@ started or continued.
 Backlog
 -------
 
+*   Update max value of progress, if period duration updated.
 *   Can close preferences dialog with ESC and CMD+Q.
 *   Rotation activity log as CSV files.
 *   Preferences with

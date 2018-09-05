@@ -21,6 +21,7 @@ class ActivityDemand: NSObject, NSUserNotificationCenterDelegate {
     var delegate: ActivityDemandDelegate?
     
     private var firstActivityTimestamp: Date!
+    private var firstActivityPeriod: TimeInterval!
     
     private var lastActivity: Activity!
     private var lastNotification: NSUserNotification?
@@ -31,9 +32,10 @@ class ActivityDemand: NSObject, NSUserNotificationCenterDelegate {
         NSUserNotificationCenter.default.delegate = self        
     }
     
-    func logFirstActivity(timestamp: Date) {
+    func logFirstActivity(timestamp: Date, period: TimeInterval) {
         hideNotification()
         firstActivityTimestamp = timestamp
+        firstActivityPeriod = period
         
         let notification = NSUserNotification()
         notification.title = "What are you working on?"
@@ -85,7 +87,7 @@ class ActivityDemand: NSObject, NSUserNotificationCenterDelegate {
         case .replied:
             print("log first activity")
             guard let activityTitle = notification.response else { return }
-            let activity = Activity(timestamp: firstActivityTimestamp!, title: activityTitle.string)
+            let activity = Activity(timestamp: firstActivityTimestamp!, period: firstActivityPeriod, title: activityTitle.string)
             delegate?.log(activity)
             break
         case .actionButtonClicked:

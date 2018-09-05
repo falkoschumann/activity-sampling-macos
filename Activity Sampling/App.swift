@@ -89,7 +89,7 @@ class App: NSObject, PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate
     // MARK: Log Delegate
 
     func logFirstActivity(timestamp: Date) {
-        activityDemand.logFirstActivity(timestamp: timestamp)
+        activityDemand.logFirstActivity(timestamp: timestamp, period: period.duration)
     }
     
     func shouldLogSameActivity(_ lastActivity: Activity) {
