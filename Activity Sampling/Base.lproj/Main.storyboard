@@ -24,7 +24,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="krl-FE-Yqe" kind="show" id="LcX-cf-Iay"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -109,7 +113,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Activity Log" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -126,6 +130,109 @@
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="05W-S4-xhU">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="krl-FE-Yqe" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="dxk-JM-gHi">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="krl-FE-Yqe" id="LuH-d7-W2u"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="leU-cm-DbI" kind="relationship" relationship="window.shadowedContentViewController" id="yQy-S5-whu"/>
+                    </connections>
+                </windowController>
+                <customObject id="zI5-5M-vBc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725" y="8"/>
+        </scene>
+        <!--Preferences Controller-->
+        <scene sceneID="gYN-Vg-a3N">
+            <objects>
+                <viewController id="leU-cm-DbI" customClass="PreferencesController" customModule="Activity_Sampling" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="trP-tu-uNS">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIn-Oy-ATr">
+                                <rect key="frame" x="20" y="227" width="440" height="23"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fO5-oH-UBC">
+                                        <rect key="frame" x="-2" y="3" width="116" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Period Duration:" id="SON-nm-1lj">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uqu-LF-cNJ">
+                                        <rect key="frame" x="120" y="1" width="50" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="q1u-2a-yxc"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="20" drawsBackground="YES" id="Sde-Kq-Gl4">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="leU-cm-DbI" name="value" keyPath="self.periodDurationStepper.intValue" id="QQy-xX-bnL"/>
+                                        </connections>
+                                    </textField>
+                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wk4-Dt-6JZ">
+                                        <rect key="frame" x="175" y="-2" width="19" height="27"/>
+                                        <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="1440" doubleValue="20" id="4b5-QS-wQ8"/>
+                                        <connections>
+                                            <binding destination="leU-cm-DbI" name="value" keyPath="self.periodDurationTextField.intValue" id="jsI-9w-Fbd"/>
+                                        </connections>
+                                    </stepper>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qBK-ji-cID">
+                                        <rect key="frame" x="197" y="3" width="245" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="minutes" id="8dM-lc-CAR">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Uqu-LF-cNJ" firstAttribute="leading" secondItem="GIn-Oy-ATr" secondAttribute="leading" constant="120" id="gOa-KD-2tj"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="GIn-Oy-ATr" firstAttribute="leading" secondItem="trP-tu-uNS" secondAttribute="leading" constant="20" id="0ZW-iS-RRv"/>
+                            <constraint firstAttribute="trailing" secondItem="GIn-Oy-ATr" secondAttribute="trailing" constant="20" id="AKa-SE-pXQ"/>
+                            <constraint firstItem="GIn-Oy-ATr" firstAttribute="top" secondItem="trP-tu-uNS" secondAttribute="top" constant="20" id="JDn-SZ-cDh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="periodDurationStepper" destination="wk4-Dt-6JZ" id="pkD-Ks-DUz"/>
+                        <outlet property="periodDurationTextField" destination="Uqu-LF-cNJ" id="3cf-RF-zhS"/>
+                    </connections>
+                </viewController>
+                <customObject id="Pjv-PC-mZw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="k1T-mz-DOz"/>
+            </objects>
+            <point key="canvasLocation" x="725" y="467"/>
         </scene>
         <!--Activity Log Controller-->
         <scene sceneID="hIz-AP-VOD">

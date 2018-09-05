@@ -36,12 +36,7 @@ class ActivityLogController: NSViewController, ActivityLog {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
         App.shared.activityLog = self
-    }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
     }
     
     @IBAction func logActivity(_ sender: Any) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class App: PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate, ClockDelegate, LogDelegate {
+class App: NSObject, PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate, ClockDelegate, LogDelegate {
     
     static let shared = App()
     
@@ -26,11 +26,22 @@ class App: PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate, ClockDel
     private let clock = Clock()
     private let log = Log()
     
-    init() {
+    @objc var preferences = Preferences.shared
+    var periodDurationObservation: NSKeyValueObservation?
+    
+    override init() {
+        super.init()
+        
+        period.duration = preferences.periodDuration
         period.delegate = self
         activityDemand.delegate = self
         clock.delegate = self
         log.delegate = self
+        
+        periodDurationObservation = observe(\.preferences.periodDuration, options: [.new]
+        ) { object, change in
+            self.period.duration = change.newValue!
+        }
     }
     
     func start() {

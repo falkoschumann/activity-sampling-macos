@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC069C6D213FD2870028FA7A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC069C6C213FD2870028FA7A /* Preferences.swift */; };
 		CC25634B21359B0100D59D17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC25634A21359B0100D59D17 /* AppDelegate.swift */; };
 		CC25634D21359B0100D59D17 /* ActivityLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC25634C21359B0100D59D17 /* ActivityLogController.swift */; };
 		CC25634F21359B0400D59D17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC25634E21359B0400D59D17 /* Assets.xcassets */; };
@@ -16,11 +17,13 @@
 		CCC1BA38213686C900029006 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA37213686C900029006 /* Clock.swift */; };
 		CCC1BA3A2136A64800029006 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA392136A64800029006 /* Period.swift */; };
 		CCD9EF82213EAB0200DCCDBF /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD9EF81213EAB0200DCCDBF /* ActivityLog.swift */; };
+		CCD9EF84213FC71600DCCDBF /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */; };
 		CCE6B29D2137E7C400941584 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6B29C2137E7C400941584 /* App.swift */; };
 		CCE6B29F213818C300941584 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6B29E213818C300941584 /* Activity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC069C6C213FD2870028FA7A /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		CC25634721359B0100D59D17 /* Activity Sampling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Activity Sampling.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC25634A21359B0100D59D17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC25634C21359B0100D59D17 /* ActivityLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogController.swift; sourceTree = "<group>"; };
@@ -33,6 +36,7 @@
 		CCC1BA37213686C900029006 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		CCC1BA392136A64800029006 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		CCD9EF81213EAB0200DCCDBF /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
+		CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		CCE6B29C2137E7C400941584 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CCE6B29E213818C300941584 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +99,7 @@
 				CCB67AF821394CBD00B12646 /* ActivityDemand.swift */,
 				CCD9EF81213EAB0200DCCDBF /* ActivityLog.swift */,
 				CC25634C21359B0100D59D17 /* ActivityLogController.swift */,
+				CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */,
 				CCC1BA37213686C900029006 /* Clock.swift */,
 			);
 			path = Portals;
@@ -104,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				CCB67AFB213DC13000B12646 /* Log.swift */,
+				CC069C6C213FD2870028FA7A /* Preferences.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -184,6 +190,8 @@
 				CCE6B29D2137E7C400941584 /* App.swift in Sources */,
 				CCC1BA38213686C900029006 /* Clock.swift in Sources */,
 				CCB67AF921394CBD00B12646 /* ActivityDemand.swift in Sources */,
+				CCD9EF84213FC71600DCCDBF /* PreferencesController.swift in Sources */,
+				CC069C6D213FD2870028FA7A /* Preferences.swift in Sources */,
 				CC25634D21359B0100D59D17 /* ActivityLogController.swift in Sources */,
 				CCC1BA3A2136A64800029006 /* Period.swift in Sources */,
 				CC25634B21359B0100D59D17 /* AppDelegate.swift in Sources */,
