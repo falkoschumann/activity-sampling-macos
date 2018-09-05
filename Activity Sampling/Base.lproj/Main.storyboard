@@ -61,6 +61,18 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="File" id="QEU-Be-dHC">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="File" id="Kbg-am-snh">
+                                    <items>
+                                        <menuItem title="Close" keyEquivalent="w" id="lhX-Qs-uxu">
+                                            <connections>
+                                                <action selector="performClose:" target="Ady-hI-5gd" id="MEb-lZ-Eng"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">

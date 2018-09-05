@@ -28,7 +28,6 @@ class ActivityDemand: NSObject, NSUserNotificationCenterDelegate {
     
     override init() {
         super.init()
-        
         NSUserNotificationCenter.default.delegate = self        
     }
     
