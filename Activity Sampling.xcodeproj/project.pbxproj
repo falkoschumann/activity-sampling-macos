@@ -30,7 +30,7 @@
 		CC25634E21359B0400D59D17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC25635121359B0400D59D17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC25635321359B0400D59D17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC25635421359B0400D59D17 /* Activity_Sampling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Activity_Sampling.entitlements; sourceTree = "<group>"; };
+		CC25635421359B0400D59D17 /* Activity Sampling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Activity Sampling.entitlements"; sourceTree = "<group>"; };
 		CCB67AF821394CBD00B12646 /* ActivityDemand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDemand.swift; sourceTree = "<group>"; };
 		CCB67AFB213DC13000B12646 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		CCC1BA37213686C900029006 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 				CC25634E21359B0400D59D17 /* Assets.xcassets */,
 				CC25635021359B0400D59D17 /* Main.storyboard */,
 				CC25635321359B0400D59D17 /* Info.plist */,
-				CC25635421359B0400D59D17 /* Activity_Sampling.entitlements */,
+				CC25635421359B0400D59D17 /* Activity Sampling.entitlements */,
 			);
 			path = "Activity Sampling";
 			sourceTree = "<group>";
@@ -146,6 +146,11 @@
 				TargetAttributes = {
 					CC25634621359B0100D59D17 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -329,7 +334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Activity Sampling/Activity_Sampling.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Activity Sampling/Activity Sampling.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = QC6EN37P56;
@@ -348,7 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Activity Sampling/Activity_Sampling.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Activity Sampling/Activity Sampling.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = QC6EN37P56;
