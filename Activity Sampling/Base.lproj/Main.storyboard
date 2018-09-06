@@ -169,74 +169,152 @@
             <objects>
                 <viewController id="leU-cm-DbI" customClass="PreferencesController" customModule="Activity_Sampling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="trP-tu-uNS">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="554" height="122"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIn-Oy-ATr">
-                                <rect key="frame" x="20" y="227" width="440" height="23"/>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CJg-eq-Dbd">
+                                <rect key="frame" x="20" y="20" width="514" height="82"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fO5-oH-UBC">
-                                        <rect key="frame" x="-2" y="3" width="116" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Period Duration:" id="SON-nm-1lj">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uqu-LF-cNJ">
-                                        <rect key="frame" x="120" y="1" width="50" height="22"/>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIn-Oy-ATr">
+                                        <rect key="frame" x="0.0" y="59" width="248" height="23"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fO5-oH-UBC">
+                                                <rect key="frame" x="-2" y="3" width="116" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Period Duration:" id="SON-nm-1lj">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uqu-LF-cNJ">
+                                                <rect key="frame" x="120" y="1" width="50" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="q1u-2a-yxc"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="20" drawsBackground="YES" id="Sde-Kq-Gl4">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                                <connections>
+                                                    <binding destination="leU-cm-DbI" name="value" keyPath="self.periodDurationStepper.intValue" id="QQy-xX-bnL"/>
+                                                </connections>
+                                            </textField>
+                                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wk4-Dt-6JZ">
+                                                <rect key="frame" x="175" y="-2" width="19" height="27"/>
+                                                <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="1440" doubleValue="20" id="4b5-QS-wQ8"/>
+                                                <connections>
+                                                    <binding destination="leU-cm-DbI" name="value" keyPath="self.periodDurationTextField.intValue" id="jsI-9w-Fbd"/>
+                                                </connections>
+                                            </stepper>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qBK-ji-cID">
+                                                <rect key="frame" x="197" y="3" width="53" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="minutes" id="8dM-lc-CAR">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="q1u-2a-yxc"/>
+                                            <constraint firstItem="Uqu-LF-cNJ" firstAttribute="leading" secondItem="GIn-Oy-ATr" secondAttribute="leading" constant="120" id="gOa-KD-2tj"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="20" drawsBackground="YES" id="Sde-Kq-Gl4">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <connections>
-                                            <binding destination="leU-cm-DbI" name="value" keyPath="self.periodDurationStepper.intValue" id="QQy-xX-bnL"/>
-                                        </connections>
-                                    </textField>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wk4-Dt-6JZ">
-                                        <rect key="frame" x="175" y="-2" width="19" height="27"/>
-                                        <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="1440" doubleValue="20" id="4b5-QS-wQ8"/>
-                                        <connections>
-                                            <binding destination="leU-cm-DbI" name="value" keyPath="self.periodDurationTextField.intValue" id="jsI-9w-Fbd"/>
-                                        </connections>
-                                    </stepper>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qBK-ji-cID">
-                                        <rect key="frame" x="197" y="3" width="245" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="minutes" id="8dM-lc-CAR">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kov-1s-jUm">
+                                        <rect key="frame" x="0.0" y="0.0" width="514" height="51"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f9A-gL-g5w">
+                                                <rect key="frame" x="-2" y="32" width="116" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Activity Log File:" id="X6L-Ak-YB1">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dEa-Wa-wDJ">
+                                                <rect key="frame" x="120" y="0.0" width="394" height="51"/>
+                                                <subviews>
+                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d3q-rU-AL2">
+                                                        <rect key="frame" x="0.0" y="29" width="394" height="22"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="pV0-mL-1Jc">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pTK-wn-9Wo">
+                                                        <rect key="frame" x="-6" y="-7" width="112" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Change File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="arX-hR-mri">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="chooseLogFile:" target="leU-cm-DbI" id="7JO-o7-XGI"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="d3q-rU-AL2" firstAttribute="leading" secondItem="dEa-Wa-wDJ" secondAttribute="leading" id="4BH-5t-wQr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="d3q-rU-AL2" secondAttribute="trailing" id="W6s-PT-PJ7"/>
+                                                </constraints>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="dEa-Wa-wDJ" firstAttribute="leading" secondItem="Kov-1s-jUm" secondAttribute="leading" constant="120" id="b0P-sY-0sO"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Uqu-LF-cNJ" firstAttribute="leading" secondItem="GIn-Oy-ATr" secondAttribute="leading" constant="120" id="gOa-KD-2tj"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kov-1s-jUm" secondAttribute="trailing" id="f9y-G5-c19"/>
+                                    <constraint firstItem="Kov-1s-jUm" firstAttribute="leading" secondItem="CJg-eq-Dbd" secondAttribute="leading" id="tp6-BA-swM"/>
                                 </constraints>
                                 <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="GIn-Oy-ATr" firstAttribute="leading" secondItem="trP-tu-uNS" secondAttribute="leading" constant="20" id="0ZW-iS-RRv"/>
-                            <constraint firstAttribute="trailing" secondItem="GIn-Oy-ATr" secondAttribute="trailing" constant="20" id="AKa-SE-pXQ"/>
-                            <constraint firstItem="GIn-Oy-ATr" firstAttribute="top" secondItem="trP-tu-uNS" secondAttribute="top" constant="20" id="JDn-SZ-cDh"/>
+                            <constraint firstItem="CJg-eq-Dbd" firstAttribute="top" secondItem="trP-tu-uNS" secondAttribute="top" constant="20" id="7Tt-x5-Zzc"/>
+                            <constraint firstAttribute="trailing" secondItem="CJg-eq-Dbd" secondAttribute="trailing" constant="20" id="Xaa-WE-KaW"/>
+                            <constraint firstAttribute="bottom" secondItem="CJg-eq-Dbd" secondAttribute="bottom" constant="20" id="lox-eb-gVh"/>
+                            <constraint firstItem="CJg-eq-Dbd" firstAttribute="leading" secondItem="trP-tu-uNS" secondAttribute="leading" constant="20" id="xyz-Q9-jW2"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityLogFileTextField" destination="d3q-rU-AL2" id="nQ4-Gx-Se5"/>
                         <outlet property="periodDurationStepper" destination="wk4-Dt-6JZ" id="pkD-Ks-DUz"/>
                         <outlet property="periodDurationTextField" destination="Uqu-LF-cNJ" id="3cf-RF-zhS"/>
                     </connections>
@@ -244,7 +322,7 @@
                 <customObject id="Pjv-PC-mZw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="k1T-mz-DOz"/>
             </objects>
-            <point key="canvasLocation" x="725" y="467"/>
+            <point key="canvasLocation" x="725" y="402"/>
         </scene>
         <!--Activity Log Controller-->
         <scene sceneID="hIz-AP-VOD">

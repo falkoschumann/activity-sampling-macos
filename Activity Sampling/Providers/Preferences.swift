@@ -23,5 +23,19 @@ class Preferences: NSObject {
         }
         set { UserDefaults.standard.set(newValue, forKey: "period.duration") }
     }
+    
+    @objc dynamic var activityLogFile: URL {
+        get {
+            if let urlString = UserDefaults.standard.string(forKey: "log.file") {
+                return URL(fileURLWithPath: urlString)
+            } else {
+                let fileManager = FileManager.default
+                let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+                let documentsUrl = urls.first
+                return documentsUrl!.appendingPathComponent("activity-log.csv")
+            }
+        }
+        set { UserDefaults.standard.set(newValue.path, forKey: "log.file") }
+    }
 
 }

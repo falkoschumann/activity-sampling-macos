@@ -22,6 +22,8 @@ class Log {
     
     var delegate: LogDelegate?
     
+    var fileURL: URL?
+    
     private var lastActivity: Activity?
     
     func periodDidEnd(timestamp: Date) {
@@ -34,18 +36,22 @@ class Log {
     }
     
     func log(_ activity: Activity) {
-        let fm = FileManager.default
-        let urls = fm.urls(for: .documentDirectory, in: .userDomainMask)
-        if let documentsUrl = urls.first {
-            let csvUrl = documentsUrl.appendingPathComponent("activity-log.csv")
-            print(csvUrl.path)
+        writeToCSV(activity)
+        lastActivity = activity
+        delegate?.activityDidLog(self, activity: activity)
+    }
+    
+    private func writeToCSV(_ activity: Activity) {
+        if let url = fileURL {
+            print(url.path)
             let data = "\(ISO8601DateFormatter().string(from: activity.timestamp)),\(activity.period / 60),\"\(activity.title)\"\r\n".data(using: .utf8)
             do {
-                if !fm.fileExists(atPath: csvUrl.path) {
-                    try "timestamp,period,activity\r\n".write(to: csvUrl, atomically: true, encoding: .utf8)
+                let fileManager = FileManager.default
+                if !fileManager.fileExists(atPath: url.path) {
+                    try "timestamp,period,activity\r\n".write(to: url, atomically: true, encoding: .utf8)
                 }
                 
-                let handle = try FileHandle(forWritingTo: csvUrl)
+                let handle = try FileHandle(forWritingTo: url)
                 handle.seekToEndOfFile()
                 handle.write(data!)
                 handle.closeFile()
@@ -53,9 +59,6 @@ class Log {
                 print("Fehler: \(error)")
             }
         }
-        
-        lastActivity = activity
-        delegate?.activityDidLog(self, activity: activity)
     }
     
 }

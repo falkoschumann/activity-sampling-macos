@@ -11,8 +11,7 @@ Backlog
 -------
 
 *   Update max value of progress, if period duration updated.
-*   Can close preferences dialog with ESC and CMD+Q.
+*   Can close preferences dialog with ESC.
 *   Rotation activity log as CSV files.
-*   Preferences with
-    *   Path to CSV directory.
+*   Read last activities from log file and show in dialog.
 *   Publish to App Store.
