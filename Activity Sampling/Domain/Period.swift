@@ -22,7 +22,11 @@ class Period {
     
     var delegate: PeriodDelegate?
     
-    var duration: TimeInterval = 20 * 60
+    var duration: TimeInterval = 20 * 60 {
+        didSet {
+            start = nil
+        }
+    }
     
     private var start: Date!
     

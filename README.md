@@ -10,8 +10,8 @@ started or continued.
 Backlog
 -------
 
-*   Update max value of progress, if period duration updated.
+*   Read last activities from log file and show in dialog.
+*   Write user acceptance tests.
 *   Can close preferences dialog with ESC.
 *   Rotation activity log as CSV files.
-*   Read last activities from log file and show in dialog.
 *   Publish to App Store.
