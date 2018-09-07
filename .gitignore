@@ -3,4 +3,5 @@ xcuserdata/
 
 # Output
 /doc/*.html
+/templates/*.png
 
