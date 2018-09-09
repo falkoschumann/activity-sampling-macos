@@ -28,6 +28,7 @@ class App: NSObject, PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate
     
     @objc var preferences = Preferences.shared
     var periodDurationObservation: NSKeyValueObservation?
+    var activityLogFileObservation: NSKeyValueObservation?
     
     override init() {
         super.init()
@@ -36,11 +37,17 @@ class App: NSObject, PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate
         period.delegate = self
         activityDemand.delegate = self
         clock.delegate = self
+        log.fileURL = preferences.activityLogFile
         log.delegate = self
         
         periodDurationObservation = observe(\.preferences.periodDuration, options: [.new]
         ) { object, change in
             self.period.duration = change.newValue!
+        }
+        
+        activityLogFileObservation = observe(\.preferences.activityLogFile, options: [.new]
+        ) { object, change in
+            self.log.fileURL = change.newValue!
         }
     }
     

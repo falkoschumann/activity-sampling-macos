@@ -197,6 +197,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
+                                                    <action selector="periodDurationChanged:" target="leU-cm-DbI" id="Pv1-cY-PfQ"/>
                                                     <binding destination="leU-cm-DbI" name="value" keyPath="self.periodDurationStepper.intValue" id="QQy-xX-bnL"/>
                                                 </connections>
                                             </textField>
@@ -204,6 +205,7 @@
                                                 <rect key="frame" x="175" y="-2" width="19" height="27"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="1440" doubleValue="20" id="4b5-QS-wQ8"/>
                                                 <connections>
+                                                    <action selector="periodDurationChanged:" target="leU-cm-DbI" id="4cg-Zb-6ho"/>
                                                     <binding destination="leU-cm-DbI" name="value" keyPath="self.periodDurationTextField.intValue" id="jsI-9w-Fbd"/>
                                                 </connections>
                                             </stepper>
@@ -253,6 +255,9 @@
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
+                                                        <connections>
+                                                            <action selector="logFileChanged:" target="leU-cm-DbI" id="QV2-h5-SL7"/>
+                                                        </connections>
                                                     </textField>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pTK-wn-9Wo">
                                                         <rect key="frame" x="-6" y="-7" width="112" height="32"/>

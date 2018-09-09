@@ -6,7 +6,7 @@
 //  Copyright © 2018 Falko Schumann. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 protocol LogDelegate {
     
@@ -56,7 +56,12 @@ class Log {
                 handle.write(data!)
                 handle.closeFile()
             } catch {
-                print("Fehler: \(error)")
+                print("Error writing log: \(error)")
+                
+                let alert = NSAlert()
+                alert.messageText = error.localizedDescription
+                alert.alertStyle = .warning
+                alert.runModal()
             }
         }
     }

@@ -25,18 +25,11 @@ class PreferencesController: NSViewController {
         loadPreferences()
     }
     
-    private func loadPreferences() {
-        periodDurationTextField.intValue = Int32(Preferences.shared.periodDuration / 60)
-        activityLogFileTextField.stringValue = Preferences.shared.activityLogFile.path
-    }
-    
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
-        savePreferences()
-    }
-    
-    private func savePreferences() {
+    @IBAction func periodDurationChanged(_ sender: Any) {
         Preferences.shared.periodDuration = Double(periodDurationTextField.intValue * 60)
+    }
+    
+    @IBAction func logFileChanged(_ sender: Any?) {
         Preferences.shared.activityLogFile = URL(fileURLWithPath: activityLogFileTextField.stringValue)
     }
     
@@ -50,6 +43,7 @@ class PreferencesController: NSViewController {
         panel.runModal()
         if let url = panel.url {
             activityLogFileTextField.stringValue = url.path
+            logFileChanged(nil)
         }
     }
     
@@ -57,6 +51,11 @@ class PreferencesController: NSViewController {
         let periodFormatter = NumberFormatter()
         periodFormatter.allowsFloats = false
         periodDurationTextField.formatter = periodFormatter
+    }
+    
+    private func loadPreferences() {
+        periodDurationTextField.intValue = Int32(Preferences.shared.periodDuration / 60)
+        activityLogFileTextField.stringValue = Preferences.shared.activityLogFile.path
     }
     
 }
