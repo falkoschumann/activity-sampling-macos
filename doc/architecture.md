@@ -2,16 +2,22 @@
 
 ![Context diagram](context.png)
 
-## Dialog Activity Log
+## Domain Design
 
-### System clock ticks
+### Dialog Activity Log
+
+#### System clock ticks
 
 *   Update elapsed time.
 *   Update remaining time.
 *   Check period ended.
 *   If period ended, ask for current activity.
 
-### User logs activity
+#### User logs activity
 
 *   Show activity with period timestamp in dialog.
 *   Write activity with period timestamp to disk.
+
+## Flow Design
+
+![Flow](flow.png)
