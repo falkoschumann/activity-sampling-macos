@@ -43,8 +43,14 @@ class Log {
     
     private func writeToCSV(_ activity: Activity) {
         if let url = fileURL {
-            print(url.path)
-            let data = "\(ISO8601DateFormatter().string(from: activity.timestamp)),\(activity.period / 60),\"\(activity.title)\"\r\n".data(using: .utf8)
+            var row: [String] = []
+            let timestampFormatter = ISO8601DateFormatter()
+            timestampFormatter.timeZone = TimeZone.current
+            row.append(timestampFormatter.string(from: activity.timestamp))
+            row.append(String(Int(activity.period / 60)))
+            row.append("\"".appending(activity.title).appending("\""))
+            let seperator = ","
+            let data = row.joined(separator: seperator).appending("\r\n").data(using: .utf8)
             do {
                 let fileManager = FileManager.default
                 if !fileManager.fileExists(atPath: url.path) {
