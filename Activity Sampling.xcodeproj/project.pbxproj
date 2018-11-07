@@ -146,6 +146,7 @@
 				TargetAttributes = {
 					CC25634621359B0100D59D17 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -345,7 +346,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.muspellheim.Activity-Sampling";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -364,7 +365,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.muspellheim.Activity-Sampling";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
