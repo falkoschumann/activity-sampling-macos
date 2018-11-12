@@ -20,4 +20,4 @@
 
 ## Flow Design
 
-![Flow](flow.png)
+![Flow](flow-design.png)
