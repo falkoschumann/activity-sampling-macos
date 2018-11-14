@@ -15,8 +15,9 @@
 
 #### User logs activity
 
-*   Show activity with period timestamp in dialog.
-*   Write activity with period timestamp to disk.
+*   Show activity with timestamp in dialog.
+*   Group activities by day in dialog.
+*   Write activity with timestamp and duration to disk.
 
 ## Flow Design
 
