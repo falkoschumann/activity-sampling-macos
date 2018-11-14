@@ -9,7 +9,10 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, ClockDelegate, PeriodDelegate {
+    
+    private let clock = Clock()
+    private let period = Period()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         App.shared.start()
@@ -21,6 +24,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
+    }
+    
+    // MARK: Clock Delegate
+    
+    func clockTicked(_ clock: Clock, currentTime: Date) {
+        period.check(currentTime)
+    }
+    
+    // MARK: Period Delegate
+    
+    func periodStarted(_ period: Period, duration: TimeInterval) {
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "PeriodStarted"),
+                                        object: period,
+                                        userInfo: ["duration": duration])
+    }
+    
+    func periodProgressed(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "PeriodProgressed"),
+                                        object: period,
+                                        userInfo: ["elapsedTime": elapsedTime, "remainingTime": remainingTime])
+    }
+    
+    func periodEnded(_ period: Period, timestamp: Date) {
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "PeriodEnded"),
+                                        object: period,
+                                        userInfo: ["timestamp": timestamp])
     }
     
 }

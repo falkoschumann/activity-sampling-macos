@@ -30,7 +30,7 @@ class Log {
         if lastActivity == nil {
             delegate?.logFirstActivity(timestamp: timestamp)
         } else {
-            let activity = Activity(timestamp: timestamp, period: lastActivity!.period, title: lastActivity!.title)
+            let activity = Activity(timestamp: timestamp, duration: lastActivity!.duration, title: lastActivity!.title)
             delegate?.shouldLogSameActivity(activity)
         }
     }
@@ -47,7 +47,7 @@ class Log {
             let timestampFormatter = ISO8601DateFormatter()
             timestampFormatter.timeZone = TimeZone.current
             row.append(timestampFormatter.string(from: activity.timestamp))
-            row.append(String(Int(activity.period / 60)))
+            row.append(String(Int(activity.duration / 60)))
             row.append("\"".appending(activity.title).appending("\""))
             let seperator = ","
             let data = row.joined(separator: seperator).appending("\r\n").data(using: .utf8)

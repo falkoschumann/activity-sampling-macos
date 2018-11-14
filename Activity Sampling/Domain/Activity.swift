@@ -9,11 +9,7 @@
 import Foundation
 
 struct Activity {
-    
     let timestamp: Date
-    
-    let period: TimeInterval
-    
+    let duration: TimeInterval
     let title: String
-
 }

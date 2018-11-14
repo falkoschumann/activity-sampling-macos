@@ -86,7 +86,7 @@ class ActivityDemand: NSObject, NSUserNotificationCenterDelegate {
         case .replied:
             print("log first activity")
             guard let activityTitle = notification.response else { return }
-            let activity = Activity(timestamp: firstActivityTimestamp!, period: firstActivityPeriod, title: activityTitle.string)
+            let activity = Activity(timestamp: firstActivityTimestamp!, duration: firstActivityPeriod, title: activityTitle.string)
             delegate?.log(activity)
             break
         case .actionButtonClicked:

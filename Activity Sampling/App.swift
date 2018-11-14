@@ -62,15 +62,15 @@ class App: NSObject, PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate
         
     // MARK: Period Delegate
     
-    func periodDidStart(_ period: Period, duration: TimeInterval) {
+    func periodStarted(_ period: Period, duration: TimeInterval) {
         activityLog?.periodDidStart(duration: duration)
     }
     
-    func periodDidProgress(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
+    func periodProgressed(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
         activityLog?.periodDidProgress(elapsedTime: elapsedTime, remainingTime: remainingTime)
     }
     
-    func periodDidEnd(_ period: Period, timestamp: Date) {
+    func periodEnded(_ period: Period, timestamp: Date) {
         activityLog?.periodDidEnd(timestamp: timestamp)
         log.periodDidEnd(timestamp: timestamp)
     }
@@ -89,7 +89,7 @@ class App: NSObject, PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate
 
     // MARK: Clock Delegate
     
-    func clockDidTick(_ clock: Clock, currentTime: Date) {
+    func clockTicked(_ clock: Clock, currentTime: Date) {
         period.check(currentTime)
     }
     
