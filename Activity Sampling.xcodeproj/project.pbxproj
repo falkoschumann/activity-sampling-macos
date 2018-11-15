@@ -19,7 +19,6 @@
 		CCCA08B8219DD79D00FEB649 /* Activity_Sampling_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA08B7219DD79D00FEB649 /* Activity_Sampling_Tests.swift */; };
 		CCCA08C4219DE9D500FEB649 /* PeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA08C3219DE9D500FEB649 /* PeriodTests.swift */; };
 		CCCA08C7219E268200FEB649 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = CCCA08C5219E268200FEB649 /* LICENSE.txt */; };
-		CCCA08C8219E268200FEB649 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CCCA08C6219E268200FEB649 /* README.md */; };
 		CCD9EF82213EAB0200DCCDBF /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD9EF81213EAB0200DCCDBF /* ActivityLog.swift */; };
 		CCD9EF84213FC71600DCCDBF /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */; };
 		CCE6B29D2137E7C400941584 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6B29C2137E7C400941584 /* App.swift */; };
@@ -55,6 +54,13 @@
 		CCCA08C3219DE9D500FEB649 /* PeriodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTests.swift; sourceTree = "<group>"; };
 		CCCA08C5219E268200FEB649 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		CCCA08C6219E268200FEB649 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CCCA08D8219E274000FEB649 /* architecture.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = architecture.md; sourceTree = "<group>"; };
+		CCCA08D9219E274000FEB649 /* flow-design.graphml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "flow-design.graphml"; sourceTree = "<group>"; };
+		CCCA08DA219E274000FEB649 /* context.graphml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = context.graphml; sourceTree = "<group>"; };
+		CCCA08DB219E274000FEB649 /* context.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = context.png; sourceTree = "<group>"; };
+		CCCA08DC219E274000FEB649 /* architecture.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = architecture.html; sourceTree = "<group>"; };
+		CCCA08DD219E274000FEB649 /* flow-design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flow-design.png"; sourceTree = "<group>"; };
+		CCCA08DE219E274000FEB649 /* user-acceptace-tests.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "user-acceptace-tests.md"; sourceTree = "<group>"; };
 		CCD9EF81213EAB0200DCCDBF /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		CCE6B29C2137E7C400941584 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -82,8 +88,9 @@
 		CC25633E21359B0100D59D17 = {
 			isa = PBXGroup;
 			children = (
-				CCCA08C5219E268200FEB649 /* LICENSE.txt */,
 				CCCA08C6219E268200FEB649 /* README.md */,
+				CCCA08C5219E268200FEB649 /* LICENSE.txt */,
+				CCCA08D7219E271A00FEB649 /* doc */,
 				CC25634921359B0100D59D17 /* Activity Sampling */,
 				CCCA08B6219DD79D00FEB649 /* Activity Sampling Tests */,
 				CC25634821359B0100D59D17 /* Products */,
@@ -161,6 +168,20 @@
 				CCCA08C3219DE9D500FEB649 /* PeriodTests.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		CCCA08D7219E271A00FEB649 /* doc */ = {
+			isa = PBXGroup;
+			children = (
+				CCCA08DC219E274000FEB649 /* architecture.html */,
+				CCCA08D8219E274000FEB649 /* architecture.md */,
+				CCCA08DA219E274000FEB649 /* context.graphml */,
+				CCCA08DB219E274000FEB649 /* context.png */,
+				CCCA08D9219E274000FEB649 /* flow-design.graphml */,
+				CCCA08DD219E274000FEB649 /* flow-design.png */,
+				CCCA08DE219E274000FEB649 /* user-acceptace-tests.md */,
+			);
+			path = doc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,7 +273,6 @@
 			files = (
 				CCCA08C7219E268200FEB649 /* LICENSE.txt in Resources */,
 				CC25634F21359B0400D59D17 /* Assets.xcassets in Resources */,
-				CCCA08C8219E268200FEB649 /* README.md in Resources */,
 				CC25635221359B0400D59D17 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
