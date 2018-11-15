@@ -9,12 +9,12 @@
 import Foundation
 
 protocol PeriodDelegate {
-    func periodStarted(_ period: CheckPeriod, duration: TimeInterval)
-    func periodProgressed(_ period: CheckPeriod, elapsedTime: TimeInterval, remainingTime: TimeInterval)
-    func periodEnded(_ period: CheckPeriod, timestamp: Date)
+    func periodStarted(_ period: Period, duration: TimeInterval)
+    func periodProgressed(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval)
+    func periodEnded(_ period: Period, timestamp: Date)
 }
 
-class CheckPeriod {
+class Period {
     
     var delegate: PeriodDelegate?
     
@@ -27,10 +27,7 @@ class CheckPeriod {
     private var start: Date!
     
     func check(_ currentTime: Date) {
-        classify(currentTime,
-                 onStarted: start,
-                 onProgressed: progress,
-                 onEnded: end)
+        classify(currentTime, onStarted: start, onProgressed: progress, onEnded: end)
     }
     
     private func classify(_ currentTime: Date,
@@ -61,6 +58,7 @@ class CheckPeriod {
     }
     
     private func end(_ timestamp: Date) {
+        self.start = nil
         delegate?.periodEnded(self, timestamp: timestamp)
     }
     
