@@ -9,12 +9,12 @@
 import Foundation
 
 protocol PeriodDelegate {
-    func periodStarted(_ period: Period, duration: TimeInterval)
-    func periodProgressed(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval)
-    func periodEnded(_ period: Period, timestamp: Date)
+    func periodStarted(_ period: CheckPeriod, duration: TimeInterval)
+    func periodProgressed(_ period: CheckPeriod, elapsedTime: TimeInterval, remainingTime: TimeInterval)
+    func periodEnded(_ period: CheckPeriod, timestamp: Date)
 }
 
-class Period {
+class CheckPeriod {
     
     var delegate: PeriodDelegate?
     

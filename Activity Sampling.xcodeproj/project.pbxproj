@@ -15,7 +15,7 @@
 		CCB67AF921394CBD00B12646 /* ActivityDemand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB67AF821394CBD00B12646 /* ActivityDemand.swift */; };
 		CCB67AFC213DC13000B12646 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB67AFB213DC13000B12646 /* Log.swift */; };
 		CCC1BA38213686C900029006 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA37213686C900029006 /* Clock.swift */; };
-		CCC1BA3A2136A64800029006 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA392136A64800029006 /* Period.swift */; };
+		CCC1BA3A2136A64800029006 /* CheckPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA392136A64800029006 /* CheckPeriod.swift */; };
 		CCD9EF82213EAB0200DCCDBF /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD9EF81213EAB0200DCCDBF /* ActivityLog.swift */; };
 		CCD9EF84213FC71600DCCDBF /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */; };
 		CCE6B29D2137E7C400941584 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6B29C2137E7C400941584 /* App.swift */; };
@@ -34,7 +34,7 @@
 		CCB67AF821394CBD00B12646 /* ActivityDemand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDemand.swift; sourceTree = "<group>"; };
 		CCB67AFB213DC13000B12646 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		CCC1BA37213686C900029006 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
-		CCC1BA392136A64800029006 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
+		CCC1BA392136A64800029006 /* CheckPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPeriod.swift; sourceTree = "<group>"; };
 		CCD9EF81213EAB0200DCCDBF /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		CCE6B29C2137E7C400941584 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				CCE6B29E213818C300941584 /* Activity.swift */,
-				CCC1BA392136A64800029006 /* Period.swift */,
+				CCC1BA392136A64800029006 /* CheckPeriod.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -199,7 +199,7 @@
 				CCD9EF84213FC71600DCCDBF /* PreferencesController.swift in Sources */,
 				CC069C6D213FD2870028FA7A /* Preferences.swift in Sources */,
 				CC25634D21359B0100D59D17 /* ActivityLogController.swift in Sources */,
-				CCC1BA3A2136A64800029006 /* Period.swift in Sources */,
+				CCC1BA3A2136A64800029006 /* CheckPeriod.swift in Sources */,
 				CC25634B21359B0100D59D17 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

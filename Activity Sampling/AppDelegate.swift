@@ -12,7 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate, ClockDelegate, PeriodDelegate {
     
     private let clock = Clock()
-    private let period = Period()
+    private let period = CheckPeriod()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         App.shared.start()
@@ -34,19 +34,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, ClockDelegate, PeriodDelegat
     
     // MARK: Period Delegate
     
-    func periodStarted(_ period: Period, duration: TimeInterval) {
+    func periodStarted(_ period: CheckPeriod, duration: TimeInterval) {
         NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "PeriodStarted"),
                                         object: period,
                                         userInfo: ["duration": duration])
     }
     
-    func periodProgressed(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
+    func periodProgressed(_ period: CheckPeriod, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
         NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "PeriodProgressed"),
                                         object: period,
                                         userInfo: ["elapsedTime": elapsedTime, "remainingTime": remainingTime])
     }
     
-    func periodEnded(_ period: Period, timestamp: Date) {
+    func periodEnded(_ period: CheckPeriod, timestamp: Date) {
         NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "PeriodEnded"),
                                         object: period,
                                         userInfo: ["timestamp": timestamp])

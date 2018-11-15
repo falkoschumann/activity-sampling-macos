@@ -21,7 +21,7 @@ class App: NSObject, PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate
         }
     }
     
-    private let period = Period()
+    private let period = CheckPeriod()
     private let activityDemand = ActivityDemand()
     private let clock = Clock()
     private let log = Log()
@@ -62,15 +62,15 @@ class App: NSObject, PeriodDelegate, ActivityDemandDelegate, ActivityLogDelegate
         
     // MARK: Period Delegate
     
-    func periodStarted(_ period: Period, duration: TimeInterval) {
+    func periodStarted(_ period: CheckPeriod, duration: TimeInterval) {
         activityLog?.periodDidStart(duration: duration)
     }
     
-    func periodProgressed(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
+    func periodProgressed(_ period: CheckPeriod, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
         activityLog?.periodDidProgress(elapsedTime: elapsedTime, remainingTime: remainingTime)
     }
     
-    func periodEnded(_ period: Period, timestamp: Date) {
+    func periodEnded(_ period: CheckPeriod, timestamp: Date) {
         activityLog?.periodDidEnd(timestamp: timestamp)
         log.periodDidEnd(timestamp: timestamp)
     }
