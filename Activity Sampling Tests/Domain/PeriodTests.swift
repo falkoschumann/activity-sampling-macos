@@ -14,8 +14,8 @@ class PeriodTests: XCTestCase {
     func testStart() {
         let delegate = TestingPeriodDelegate()
         let period = Period()
-        period.delegate = delegate
         
+        period.delegate = delegate
         let startTime = Date()
         period.check(startTime)
         
@@ -26,10 +26,10 @@ class PeriodTests: XCTestCase {
     func testProgress() {
         let delegate = TestingPeriodDelegate()
         let period = Period()
-        period.delegate = delegate
         let startTime = Date()
         period.check(startTime)
         
+        period.delegate = delegate
         let currentTime = startTime.addingTimeInterval(TimeInterval(7 * 60))
         period.check(currentTime)
         
@@ -41,15 +41,31 @@ class PeriodTests: XCTestCase {
     func testEnd() {
         let delegate = TestingPeriodDelegate()
         let period = Period()
-        period.delegate = delegate
         let startTime = Date()
         period.check(startTime)
         
+        period.delegate = delegate
         let currentTime = startTime.addingTimeInterval(TimeInterval(20 * 60))
         period.check(currentTime)
         
         XCTAssertNotNil(delegate.period, "period")
         XCTAssertEqual(currentTime, delegate.timestamp, "timestamp")
+    }
+    
+    func testRestart() {
+        let delegate = TestingPeriodDelegate()
+        let period = Period()
+        let startTime = Date()
+        period.check(startTime)
+        var currentTime = startTime.addingTimeInterval(TimeInterval(20 * 60))
+        period.check(currentTime)
+
+        period.delegate = delegate
+        currentTime = startTime.addingTimeInterval(TimeInterval(20 * 60 + 1))
+        period.check(currentTime)
+
+        XCTAssertNotNil(delegate.period, "period")
+        XCTAssertEqual(TimeInterval(20 * 60), delegate.duration, "duration")
     }
 
 }
