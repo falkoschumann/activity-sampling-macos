@@ -12,30 +12,46 @@ class Preferences: NSObject {
     
     static let shared = Preferences()
     
-    @objc dynamic var periodDuration: TimeInterval {
+    private static let defaultPeriodDuration = TimeInterval(20 * 60)
+    
+    var periodDuration: TimeInterval {
         get {
             let duration = UserDefaults.standard.double(forKey: "period.duration")
-            if duration > 0 && duration <= 24 * 60 * 60 {
+            if isDurationValid(duration) {
                 return duration
             } else {
-                return 20 * 60
+                return Preferences.defaultPeriodDuration
             }
         }
-        set { UserDefaults.standard.set(newValue, forKey: "period.duration") }
+        set {
+            if isDurationValid(newValue) {
+                UserDefaults.standard.set(newValue, forKey: "period.duration")
+            }
+        }
     }
     
-    @objc dynamic var activityLogFile: URL {
+    var activityLogFile: URL {
         get {
             if let urlString = UserDefaults.standard.string(forKey: "log.file") {
                 return URL(fileURLWithPath: urlString)
             } else {
-                let fileManager = FileManager.default
-                let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-                let documentsUrl = urls.first
-                return documentsUrl!.appendingPathComponent("activity-log.csv")
+                return Preferences.defaultActivityLogFile()
             }
         }
-        set { UserDefaults.standard.set(newValue.path, forKey: "log.file") }
+        set {
+            UserDefaults.standard.set(newValue.path, forKey: "log.file")
+        }
     }
-
+    
+    private func isDurationValid(_ duration: TimeInterval) -> Bool {
+        return duration > 0 && duration <= 24 * 60 * 60
+    }
+    
+    private static func defaultActivityLogFile() -> URL {
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsUrl = urls.first
+        return documentsUrl!.appendingPathComponent("activity-log.csv")
+    }
+    
 }
