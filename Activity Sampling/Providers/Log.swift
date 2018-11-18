@@ -6,16 +6,11 @@
 //  Copyright © 2018 Falko Schumann. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 protocol LogDelegate {
-    
-    func logFirstActivity(timestamp: Date)
-    
-    func shouldLogSameActivity(_ lastActivity: Activity)
-    
-    func activityDidLog(_ log: Log, activity: Activity)
-    
+    func logSucceded(_ log: Log, activity: Activity)
+    func logFailed(_ log: Log, message: String)
 }
 
 class Log {
@@ -24,52 +19,51 @@ class Log {
     
     var fileURL: URL?
     
-    private var lastActivity: Activity?
-    
-    func periodDidEnd(timestamp: Date) {
-        if lastActivity == nil {
-            delegate?.logFirstActivity(timestamp: timestamp)
-        } else {
-            let activity = Activity(timestamp: timestamp, duration: lastActivity!.duration, title: lastActivity!.title)
-            delegate?.shouldLogSameActivity(activity)
-        }
-    }
-    
     func log(_ activity: Activity) {
         writeToCSV(activity)
-        lastActivity = activity
-        delegate?.activityDidLog(self, activity: activity)
     }
     
     private func writeToCSV(_ activity: Activity) {
         if let url = fileURL {
-            var row: [String] = []
-            let timestampFormatter = ISO8601DateFormatter()
-            timestampFormatter.timeZone = TimeZone.current
-            row.append(timestampFormatter.string(from: activity.timestamp))
-            row.append(String(Int(activity.duration / 60)))
-            row.append("\"".appending(activity.title).appending("\""))
-            let seperator = ","
-            let data = row.joined(separator: seperator).appending("\r\n").data(using: .utf8)
             do {
-                let fileManager = FileManager.default
-                if !fileManager.fileExists(atPath: url.path) {
-                    try "timestamp,period,activity\r\n".write(to: url, atomically: true, encoding: .utf8)
+                if isNewLogFile(url) {
+                    try writeHeader(to: url)
                 }
-                
-                let handle = try FileHandle(forWritingTo: url)
-                handle.seekToEndOfFile()
-                handle.write(data!)
-                handle.closeFile()
+                let entry = createEntry(activity)
+                try writeEntry(entry, to: url)
+                delegate?.logSucceded(self, activity: activity)
             } catch {
                 print("Error writing log: \(error)")
-                
-                let alert = NSAlert()
-                alert.messageText = error.localizedDescription
-                alert.alertStyle = .warning
-                alert.runModal()
+                delegate?.logFailed(self, message: error.localizedDescription)
             }
         }
+    }
+    
+    private func isNewLogFile(_ url: URL) -> Bool {
+        let fileManager = FileManager.default
+        return !fileManager.fileExists(atPath: url.path)
+    }
+    
+    private func writeHeader(to: URL) throws {
+        try "timestamp,period,activity\r\n".write(to: to, atomically: true, encoding: .utf8)
+    }
+    
+    private func createEntry(_ activity: Activity) -> Data {
+        var row: [String] = []
+        let timestampFormatter = ISO8601DateFormatter()
+        timestampFormatter.timeZone = TimeZone.current
+        row.append(timestampFormatter.string(from: activity.timestamp))
+        row.append(String(Int(activity.duration / 60)))
+        row.append("\"".appending(activity.title).appending("\""))
+        let seperator = ","
+        return row.joined(separator: seperator).appending("\r\n").data(using: .utf8)!
+    }
+    
+    private func writeEntry(_ entry: Data, to: URL) throws {
+        let handle = try FileHandle(forWritingTo: to)
+        handle.seekToEndOfFile()
+        handle.write(entry)
+        handle.closeFile()
     }
     
 }
