@@ -8,7 +8,13 @@
 
 import Cocoa
 
-class ActivityLogController: NSViewController, ActivityLog {
+protocol ActivityLogDelegate {
+    func log(_ activityLog: ActivityLogController, activity: Activity)
+}
+
+class ActivityLogController: NSViewController {
+    
+    var delegate: ActivityLogDelegate?
     
     @IBOutlet weak var activityTitleLabel: NSTextField!
     @IBOutlet weak var activityTitle: NSTextField!
@@ -19,94 +25,80 @@ class ActivityLogController: NSViewController, ActivityLog {
     
     @IBOutlet var log: NSTextView!
     
-    var delegate: ActivityLogDelegate?
-    
-    private let remainingTimeFormatter = createRemainingTimeFormatter()
-    
     private var timestamp: Date?
     private var lastActivity: Activity?
+    
+    @IBAction func logActivity(_ sender: Any) {
+        let activity = Activity(timestamp: timestamp!, duration: elapsedTime.maxValue, title: activityTitle.stringValue)
+        lastActivity = activity
+        
+        disableFormular(activity: activity)
+        printCurrentDate(activity: activity)
+        printActivity(activity)
+        
+        delegate?.log(self, activity: activity)
+    }
+    
+    func startPeriod(duration: TimeInterval) {
+        elapsedTime.maxValue = duration
+        progressPeriod(elapsedTime: 0, remainingTime: duration)
+    }
+    
+    func progressPeriod(elapsedTime: TimeInterval, remainingTime: TimeInterval) {
+        self.elapsedTime.doubleValue = elapsedTime
+        let time = Date(timeIntervalSinceReferenceDate: remainingTime)
+        self.remainingTime.stringValue = DateFormatter.localizedString(from: time, dateStyle: .none, timeStyle: .medium)
+    }
+    
+    func endPeriod(timestamp: Date) {
+        self.timestamp = timestamp
+        enableFormular()
+    }
     
     private static func createRemainingTimeFormatter() -> DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .none
         formatter.timeStyle = .medium
-        formatter.timeZone = TimeZone(identifier: "UTC");
+        formatter.timeZone = TimeZone(identifier: "UTC")
         return formatter
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        App.shared.activityLog = self
-    }
-    
-    @IBAction func logActivity(_ sender: Any) {
-        let activity = Activity(timestamp: timestamp!, duration: elapsedTime.maxValue, title: self.activityTitle.stringValue)
-        delegate?.log(activity)
-    }
-    
-    private func resetElapsedTime(_ duration: TimeInterval) {
-        elapsedTime.maxValue = duration;
-        updatePeriodProgess(0, duration);
-    }
-    
-    private func updatePeriodProgess(_ elapsedTime: TimeInterval, _ remainingTime: TimeInterval) {
-        self.elapsedTime.doubleValue = elapsedTime;
-        self.remainingTime.stringValue = remainingTimeFormatter.string(from: Date(timeIntervalSinceReferenceDate: remainingTime))
-    }
-    
-    private func askForCurrentActivity(timestamp: Date) {
-        self.timestamp = timestamp
+    private func enableFormular() {
         activityTitleLabel.isEnabled = true
         activityTitle.isEnabled = true
         logActivity.isEnabled = true
         activityTitle.becomeFirstResponder()
     }
     
-    private func ifIsNewDay(_ timestamp: Date, then: (Date) -> Void) {
-        let calendar = Calendar.current;
-        if lastActivity == nil || calendar.compare(lastActivity!.timestamp, to: timestamp, toGranularity: .day) != .orderedSame {
-            then(timestamp)
-        }
+    private func disableFormular(activity: Activity) {
+        activityTitleLabel.isEnabled = false
+        activityTitle.stringValue = activity.title
+        activityTitle.isEnabled = false
+        logActivity.isEnabled = false
     }
     
-    private func printDay(_ timestamp: Date) {
-        let text = DateFormatter.localizedString(from: timestamp, dateStyle: .full, timeStyle: .none)
-        log.textStorage?.append(NSAttributedString(string: text))
+    private func printCurrentDate(activity: Activity) {
+        if sameDay(activity: activity) {
+            return
+        }
+        let date = DateFormatter.localizedString(from: activity.timestamp, dateStyle: .full, timeStyle: .none)
+        log.textStorage?.append(NSAttributedString(string: date))
         log.textStorage?.append(NSAttributedString(string: "\n"))
     }
     
-    private func printActivity(_ activity: Activity) {
-        lastActivity = activity
-        
-        activityTitleLabel.isEnabled = false
-        self.activityTitle.stringValue = activity.title
-        self.activityTitle.isEnabled = false
-        logActivity.isEnabled = false
-        
+    private func sameDay(activity: Activity) -> Bool {
+        guard lastActivity != nil else {
+            return false
+        }
+        return Calendar.current.compare(lastActivity!.timestamp, to: activity.timestamp, toGranularity: .day) != .orderedSame
+    }
+    
+    private func printActivity(_ activity: Activity){
         let timestamp = DateFormatter.localizedString(from: activity.timestamp, dateStyle: .none, timeStyle: .short)
         log.textStorage?.append(NSAttributedString(string: timestamp))
         log.textStorage?.append(NSAttributedString(string: " - "))
         log.textStorage?.append(NSAttributedString(string: activity.title))
         log.textStorage?.append(NSAttributedString(string: "\n"))
-    }
-    
-    // MARK: Activity Log
-    
-    func periodDidStart(duration: TimeInterval) {
-        resetElapsedTime(duration)
-    }
-    
-    func periodDidProgress(elapsedTime: TimeInterval, remainingTime: TimeInterval) {
-        updatePeriodProgess(elapsedTime, remainingTime);
-    }
-    
-    func periodDidEnd(timestamp: Date) {
-        askForCurrentActivity(timestamp: timestamp)
-    }
-    
-    func activityDidLog(activity: Activity) {
-        ifIsNewDay(activity.timestamp, then: printDay);
-        printActivity(activity)
     }
     
 }

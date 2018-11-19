@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Preferences: NSObject {
+class Preferences {
     
     static let shared = Preferences()
     
