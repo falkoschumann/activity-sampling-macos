@@ -20,7 +20,6 @@
 		CCCA08C4219DE9D500FEB649 /* PeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA08C3219DE9D500FEB649 /* PeriodTests.swift */; };
 		CCCA08C7219E268200FEB649 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = CCCA08C5219E268200FEB649 /* LICENSE.txt */; };
 		CCD9EF84213FC71600DCCDBF /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */; };
-		CCE6B29D2137E7C400941584 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6B29C2137E7C400941584 /* App.swift */; };
 		CCE6B29F213818C300941584 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6B29E213818C300941584 /* Activity.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +60,6 @@
 		CCCA08DD219E274000FEB649 /* flow-design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flow-design.png"; sourceTree = "<group>"; };
 		CCCA08DE219E274000FEB649 /* user-acceptace-tests.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "user-acceptace-tests.md"; sourceTree = "<group>"; };
 		CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
-		CCE6B29C2137E7C400941584 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CCE6B29E213818C300941584 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,7 +109,6 @@
 				CCB67AF721392D4300B12646 /* Portals */,
 				CCB67AFA213DC10200B12646 /* Providers */,
 				CC25634A21359B0100D59D17 /* AppDelegate.swift */,
-				CCE6B29C2137E7C400941584 /* App.swift */,
 				CC25634E21359B0400D59D17 /* Assets.xcassets */,
 				CC25635021359B0400D59D17 /* Main.storyboard */,
 				CC25635321359B0400D59D17 /* Info.plist */,
@@ -290,7 +287,6 @@
 			files = (
 				CCE6B29F213818C300941584 /* Activity.swift in Sources */,
 				CCB67AFC213DC13000B12646 /* Log.swift in Sources */,
-				CCE6B29D2137E7C400941584 /* App.swift in Sources */,
 				CCC1BA38213686C900029006 /* Clock.swift in Sources */,
 				CCB67AF921394CBD00B12646 /* ActivityDemand.swift in Sources */,
 				CCD9EF84213FC71600DCCDBF /* PreferencesController.swift in Sources */,
