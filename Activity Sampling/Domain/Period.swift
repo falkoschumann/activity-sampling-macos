@@ -9,9 +9,9 @@
 import Foundation
 
 protocol PeriodDelegate {
-    func periodStarted(_ period: Period, duration: TimeInterval)
-    func periodProgressed(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval)
-    func periodEnded(_ period: Period, timestamp: Date)
+    func periodStarted(duration: TimeInterval)
+    func periodProgressed(elapsedTime: TimeInterval, remainingTime: TimeInterval)
+    func periodEnded(timestamp: Date)
 }
 
 class Period {
@@ -50,16 +50,16 @@ class Period {
     
     private func start(_ timestamp: Date) {
         self.start = timestamp
-        delegate?.periodStarted(self, duration: duration)
+        delegate?.periodStarted(duration: duration)
     }
     
     private func progress(_ elapsedTime: TimeInterval, _ remainingTime: TimeInterval) {
-        delegate?.periodProgressed(self, elapsedTime: elapsedTime, remainingTime: remainingTime)
+        delegate?.periodProgressed(elapsedTime: elapsedTime, remainingTime: remainingTime)
     }
     
     private func end(_ timestamp: Date) {
         self.start = nil
-        delegate?.periodEnded(self, timestamp: timestamp)
+        delegate?.periodEnded(timestamp: timestamp)
     }
     
 }
