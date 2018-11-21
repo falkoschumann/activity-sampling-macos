@@ -47,7 +47,12 @@ class ActivityLogController: NSViewController {
     func progressPeriod(elapsedTime: TimeInterval, remainingTime: TimeInterval) {
         self.elapsedTime.doubleValue = elapsedTime
         let time = Date(timeIntervalSinceReferenceDate: remainingTime)
-        self.remainingTime.stringValue = DateFormatter.localizedString(from: time, dateStyle: .none, timeStyle: .medium)
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .medium
+        formatter.timeZone = TimeZone(identifier: "UTC");
+        self.remainingTime.stringValue = formatter.string(from: time)
     }
     
     func endPeriod(timestamp: Date) {
@@ -55,24 +60,18 @@ class ActivityLogController: NSViewController {
         enableFormular()
     }
     
-    private static func createRemainingTimeFormatter() -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .medium
-        formatter.timeZone = TimeZone(identifier: "UTC")
-        return formatter
-    }
-    
     private func enableFormular() {
         activityTitleLabel.isEnabled = true
         activityTitle.isEnabled = true
         logActivity.isEnabled = true
+        
         activityTitle.becomeFirstResponder()
     }
     
     private func disableFormular(activity: Activity) {
-        activityTitleLabel.isEnabled = false
         activityTitle.stringValue = activity.title
+        
+        activityTitleLabel.isEnabled = false
         activityTitle.isEnabled = false
         logActivity.isEnabled = false
     }
@@ -82,8 +81,8 @@ class ActivityLogController: NSViewController {
             return
         }
         let date = DateFormatter.localizedString(from: activity.timestamp, dateStyle: .full, timeStyle: .none)
-        log.textStorage?.append(NSAttributedString(string: date))
-        log.textStorage?.append(NSAttributedString(string: "\n"))
+        log.textStorage?.append(NSAttributedString(string: date + "\n",
+                                                   attributes: [.foregroundColor: NSColor.textColor]))
     }
     
     private func sameDay(activity: Activity) -> Bool {
@@ -95,10 +94,8 @@ class ActivityLogController: NSViewController {
     
     private func printActivity(_ activity: Activity){
         let timestamp = DateFormatter.localizedString(from: activity.timestamp, dateStyle: .none, timeStyle: .short)
-        log.textStorage?.append(NSAttributedString(string: timestamp))
-        log.textStorage?.append(NSAttributedString(string: " - "))
-        log.textStorage?.append(NSAttributedString(string: activity.title))
-        log.textStorage?.append(NSAttributedString(string: "\n"))
+        log.textStorage?.append(NSAttributedString(string: timestamp + " - " + activity.title + "\n",
+                                                   attributes: [.foregroundColor: NSColor.textColor]))
     }
     
 }
