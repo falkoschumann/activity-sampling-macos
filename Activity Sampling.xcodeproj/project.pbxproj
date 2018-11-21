@@ -22,6 +22,7 @@
 		CCD9EF84213FC71600DCCDBF /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */; };
 		CCE6B29F213818C300941584 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6B29E213818C300941584 /* Activity.swift */; };
 		CCECDB3421A5832D00265AE2 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCECDB3321A5832D00265AE2 /* App.swift */; };
+		CCECDB3621A5EE8100265AE2 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCECDB3521A5EE8100265AE2 /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		CCE6B29E213818C300941584 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		CCECDB3321A5832D00265AE2 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		CCECDB3521A5EE8100265AE2 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				CC25634C21359B0100D59D17 /* ActivityLogController.swift */,
 				CCD9EF83213FC71600DCCDBF /* PreferencesController.swift */,
 				CCC1BA37213686C900029006 /* Clock.swift */,
+				CCECDB3521A5EE8100265AE2 /* Notifications.swift */,
 			);
 			path = Portals;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			files = (
 				CCE6B29F213818C300941584 /* Activity.swift in Sources */,
 				CCB67AFC213DC13000B12646 /* Log.swift in Sources */,
+				CCECDB3621A5EE8100265AE2 /* Notifications.swift in Sources */,
 				CCC1BA38213686C900029006 /* Clock.swift in Sources */,
 				CCB67AF921394CBD00B12646 /* ActivityDemand.swift in Sources */,
 				CCD9EF84213FC71600DCCDBF /* PreferencesController.swift in Sources */,

@@ -15,6 +15,7 @@ class App {
     let clock = Clock()
     let period = Period()
     let log = Log()
+    let notifications = Notifications()
     
     private init() {
         period.duration = Preferences.shared.periodDuration
@@ -40,14 +41,17 @@ extension Period : ClockDelegate {
     
 }
 
-extension ActivityLogController : PeriodDelegate {
+extension ActivityLogController : PeriodDelegate, NotificationsDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         App.shared.period.delegate = self
+        App.shared.notifications.delegate = self
         delegate = App.shared.log
     }
+    
+    // MARK: PeriodDelegate
     
     func started(_ period: Period, duration: TimeInterval) {
         startPeriod(duration: duration)
@@ -59,6 +63,26 @@ extension ActivityLogController : PeriodDelegate {
     
     func ended(_ period: Period, timestamp: Date) {
         endPeriod(timestamp: timestamp)
+        if let activity = lastActivity {
+            App.shared.notifications.askIfSameActivity(title: activity.title)
+        } else {
+            App.shared.notifications.askAboutCurrentActivity()
+        }
+    }
+    
+    // MARK: NotificationsDelegate
+    
+    func logActivity(_ notifications: Notifications, title: String) {
+        // TODO Not implemented yet.
+        lastActivity = Activity(timestamp: timestamp!, duration: periodDuration, title: title)
+    }
+    
+    func logSameActivity(_ notifications: Notifications) {
+        // TODO Not implemented yet.
+    }
+    
+    func logOtherActivity(_ notifications: Notifications) {
+        // TODO Not implemented yet.
     }
     
 }

@@ -25,18 +25,20 @@ class ActivityLogController: NSViewController {
     
     @IBOutlet var log: NSTextView!
     
-    private var timestamp: Date?
-    private var lastActivity: Activity?
+    internal var timestamp: Date?
+    internal var lastActivity: Activity?
+    
+    internal var periodDuration: TimeInterval {
+        get { return elapsedTime.maxValue }
+    }
     
     @IBAction func logActivity(_ sender: Any) {
-        let activity = Activity(timestamp: timestamp!, duration: elapsedTime.maxValue, title: activityTitle.stringValue)
-        lastActivity = activity
-        
-        disableFormular(activity: activity)
-        printCurrentDate(activity: activity)
-        printActivity(activity)
-        
-        delegate?.logged(self, activity: activity)
+        lastActivity = Activity(timestamp: timestamp!, duration: elapsedTime.maxValue, title: activityTitle.stringValue)
+        disableFormular()
+        activityTitle.stringValue = lastActivity!.title
+        printCurrentDate(activity: lastActivity!)
+        printActivity(lastActivity!)
+        delegate?.logged(self, activity: lastActivity!)
     }
     
     func startPeriod(duration: TimeInterval) {
@@ -46,12 +48,12 @@ class ActivityLogController: NSViewController {
     
     func progressPeriod(elapsedTime: TimeInterval, remainingTime: TimeInterval) {
         self.elapsedTime.doubleValue = elapsedTime
-        let time = Date(timeIntervalSinceReferenceDate: remainingTime)
         
+        let time = Date(timeIntervalSinceReferenceDate: remainingTime)
         let formatter = DateFormatter()
         formatter.dateStyle = .none
         formatter.timeStyle = .medium
-        formatter.timeZone = TimeZone(identifier: "UTC");
+        formatter.timeZone = TimeZone(identifier: "UTC")
         self.remainingTime.stringValue = formatter.string(from: time)
     }
     
@@ -68,9 +70,7 @@ class ActivityLogController: NSViewController {
         activityTitle.becomeFirstResponder()
     }
     
-    private func disableFormular(activity: Activity) {
-        activityTitle.stringValue = activity.title
-        
+    private func disableFormular() {
         activityTitleLabel.isEnabled = false
         activityTitle.isEnabled = false
         logActivity.isEnabled = false
