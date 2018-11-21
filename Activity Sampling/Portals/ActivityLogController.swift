@@ -8,13 +8,13 @@
 
 import Cocoa
 
-protocol ActivityLogDelegate {
-    func activityLogged(activity: Activity)
+protocol ActivityLogDelegate : class {
+    func logged(_ activityLog: ActivityLogController, activity: Activity)
 }
 
 class ActivityLogController: NSViewController {
     
-    var delegate: ActivityLogDelegate?
+    weak var delegate: ActivityLogDelegate?
     
     @IBOutlet weak var activityTitleLabel: NSTextField!
     @IBOutlet weak var activityTitle: NSTextField!
@@ -36,7 +36,7 @@ class ActivityLogController: NSViewController {
         printCurrentDate(activity: activity)
         printActivity(activity)
         
-        delegate?.activityLogged(activity: activity)
+        delegate?.logged(self, activity: activity)
     }
     
     func startPeriod(duration: TimeInterval) {

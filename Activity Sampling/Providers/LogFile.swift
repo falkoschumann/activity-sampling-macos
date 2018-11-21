@@ -1,5 +1,5 @@
 //
-//  Log.swift
+//  LogFile.swift
 //  Activity Sampling
 //
 //  Created by Falko Schumann on 03.09.18.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-protocol LogDelegate {
-    func logSucceded(_ log: Log, activity: Activity)
-    func logFailed(_ log: Log, message: String)
+protocol LogFileDelegate : class {
+    func successfullyWritten(_ logFile: LogFile, activity: Activity)
+    func writeFailed(_ logFile: LogFile, message: String)
 }
 
-class Log {
+class LogFile {
     
-    var delegate: LogDelegate?
+    weak var delegate: LogFileDelegate?
     
     var fileURL: URL?
     
-    func log(_ activity: Activity) {
+    func write(_ activity: Activity) {
         writeToCSV(activity)
     }
     
@@ -31,10 +31,10 @@ class Log {
                 }
                 let entry = createEntry(activity)
                 try writeEntry(entry, to: url)
-                delegate?.logSucceded(self, activity: activity)
+                delegate?.successfullyWritten(self, activity: activity)
             } catch {
                 print("Error writing log: \(error)")
-                delegate?.logFailed(self, message: error.localizedDescription)
+                delegate?.writeFailed(self, message: error.localizedDescription)
             }
         }
     }

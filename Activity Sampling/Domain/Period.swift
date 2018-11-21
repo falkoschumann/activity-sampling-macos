@@ -8,15 +8,15 @@
 
 import Foundation
 
-protocol PeriodDelegate {
-    func periodStarted(duration: TimeInterval)
-    func periodProgressed(elapsedTime: TimeInterval, remainingTime: TimeInterval)
-    func periodEnded(timestamp: Date)
+protocol PeriodDelegate : class {
+    func started(_ period: Period, duration: TimeInterval)
+    func progressed(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval)
+    func ended(_ period: Period, timestamp: Date)
 }
 
 class Period {
     
-    var delegate: PeriodDelegate?
+    weak var delegate: PeriodDelegate?
     
     var duration: TimeInterval = 20 * 60 {
         didSet {
@@ -50,16 +50,16 @@ class Period {
     
     private func start(_ timestamp: Date) {
         self.start = timestamp
-        delegate?.periodStarted(duration: duration)
+        delegate?.started(self, duration: duration)
     }
     
     private func progress(_ elapsedTime: TimeInterval, _ remainingTime: TimeInterval) {
-        delegate?.periodProgressed(elapsedTime: elapsedTime, remainingTime: remainingTime)
+        delegate?.progressed(self, elapsedTime: elapsedTime, remainingTime: remainingTime)
     }
     
     private func end(_ timestamp: Date) {
         self.start = nil
-        delegate?.periodEnded(timestamp: timestamp)
+        delegate?.ended(self, timestamp: timestamp)
     }
     
 }
