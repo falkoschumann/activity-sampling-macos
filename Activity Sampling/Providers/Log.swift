@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol LogFileDelegate : class {
-    func successfullyWritten(_ logFile: LogFile, activity: Activity)
-    func writeFailed(_ logFile: LogFile, message: String)
+protocol LogDelegate : class {
+    func successfullyWritten(_ log: Log, activity: Activity)
+    func writeFailed(_ log: Log, message: String)
 }
 
-class LogFile {
+class Log {
     
-    weak var delegate: LogFileDelegate?
+    weak var delegate: LogDelegate?
     
     var fileURL: URL?
     

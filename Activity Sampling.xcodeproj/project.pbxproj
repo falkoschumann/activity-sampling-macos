@@ -13,7 +13,7 @@
 		CC25634F21359B0400D59D17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC25634E21359B0400D59D17 /* Assets.xcassets */; };
 		CC25635221359B0400D59D17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC25635021359B0400D59D17 /* Main.storyboard */; };
 		CCB67AF921394CBD00B12646 /* ActivityDemand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB67AF821394CBD00B12646 /* ActivityDemand.swift */; };
-		CCB67AFC213DC13000B12646 /* LogFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB67AFB213DC13000B12646 /* LogFile.swift */; };
+		CCB67AFC213DC13000B12646 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB67AFB213DC13000B12646 /* Log.swift */; };
 		CCC1BA38213686C900029006 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA37213686C900029006 /* Clock.swift */; };
 		CCC1BA3A2136A64800029006 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA392136A64800029006 /* Period.swift */; };
 		CCCA08B8219DD79D00FEB649 /* Activity_Sampling_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA08B7219DD79D00FEB649 /* Activity_Sampling_Tests.swift */; };
@@ -44,7 +44,7 @@
 		CC25635321359B0400D59D17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC25635421359B0400D59D17 /* Activity Sampling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Activity Sampling.entitlements"; sourceTree = "<group>"; };
 		CCB67AF821394CBD00B12646 /* ActivityDemand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDemand.swift; sourceTree = "<group>"; };
-		CCB67AFB213DC13000B12646 /* LogFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFile.swift; sourceTree = "<group>"; };
+		CCB67AFB213DC13000B12646 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		CCC1BA37213686C900029006 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		CCC1BA392136A64800029006 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		CCCA08B5219DD79D00FEB649 /* Activity Sampling Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Activity Sampling Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,7 +143,7 @@
 		CCB67AFA213DC10200B12646 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				CCB67AFB213DC13000B12646 /* LogFile.swift */,
+				CCB67AFB213DC13000B12646 /* Log.swift */,
 				CC069C6C213FD2870028FA7A /* Preferences.swift */,
 			);
 			path = Providers;
@@ -289,7 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCE6B29F213818C300941584 /* Activity.swift in Sources */,
-				CCB67AFC213DC13000B12646 /* LogFile.swift in Sources */,
+				CCB67AFC213DC13000B12646 /* Log.swift in Sources */,
 				CCC1BA38213686C900029006 /* Clock.swift in Sources */,
 				CCB67AF921394CBD00B12646 /* ActivityDemand.swift in Sources */,
 				CCD9EF84213FC71600DCCDBF /* PreferencesController.swift in Sources */,

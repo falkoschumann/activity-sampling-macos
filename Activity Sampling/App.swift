@@ -14,13 +14,20 @@ class App {
     
     let clock = Clock()
     let period = Period()
-    let logFile = LogFile()
+    let log = Log()
     
     private init() {
         period.duration = Preferences.shared.periodDuration
-        logFile.fileURL = Preferences.shared.activityLogFile
+        log.fileURL = Preferences.shared.activityLogFile
         
         clock.delegate = period
+        
+        NotificationCenter.default.addObserver(forName: Preferences.periodDurationChanged, object: nil, queue: nil) { (_) in
+            self.period.duration = Preferences.shared.periodDuration
+        }
+        NotificationCenter.default.addObserver(forName: Preferences.activityLogFileChanged, object: nil, queue: nil) { (_) in
+            self.log.fileURL = Preferences.shared.activityLogFile
+        }
     }
     
 }
@@ -39,7 +46,7 @@ extension ActivityLogController : PeriodDelegate {
         super.viewDidLoad()
         
         App.shared.period.delegate = self
-        delegate = App.shared.logFile
+        delegate = App.shared.log
     }
     
     func started(_ period: Period, duration: TimeInterval) {
@@ -56,7 +63,7 @@ extension ActivityLogController : PeriodDelegate {
     
 }
 
-extension LogFile : ActivityLogDelegate {
+extension Log : ActivityLogDelegate {
     
     func logged(_ activityLog: ActivityLogController, activity: Activity) {
         write(activity)

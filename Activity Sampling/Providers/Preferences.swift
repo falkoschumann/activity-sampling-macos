@@ -12,6 +12,9 @@ class Preferences {
     
     static let shared = Preferences()
     
+    static let periodDurationChanged = Notification.Name.init(rawValue: "Preferences.PeriodDurationChanged")
+    static let activityLogFileChanged = Notification.Name.init(rawValue: "Preferences.ActivityLogFileChanged")
+    
     private static let defaultPeriodDuration = TimeInterval(20 * 60)
     
     var periodDuration: TimeInterval {
@@ -26,8 +29,7 @@ class Preferences {
         set {
             if isDurationValid(newValue) {
                 UserDefaults.standard.set(newValue, forKey: "period.duration")
-                let eventName = Notification.Name.init(rawValue: "Preferences.PeriodDurationChanged")
-                NotificationCenter.default.post(name: eventName, object: self)
+                NotificationCenter.default.post(name: Preferences.periodDurationChanged, object: self)
             }
         }
     }
@@ -42,8 +44,7 @@ class Preferences {
         }
         set {
             UserDefaults.standard.set(newValue.path, forKey: "log.file")
-            let eventName = Notification.Name.init(rawValue: "Preferences.ActivityLogFileChanged")
-            NotificationCenter.default.post(name: eventName, object: self)
+            NotificationCenter.default.post(name: Preferences.activityLogFileChanged, object: self)
         }
     }
     
