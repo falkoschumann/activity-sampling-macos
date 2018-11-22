@@ -30,10 +30,11 @@ class ActivityLogController: NSViewController {
     
     internal var periodDuration: TimeInterval {
         get { return elapsedTime.maxValue }
+        set { elapsedTime.maxValue = newValue }
     }
     
     @IBAction func logActivity(_ sender: Any) {
-        lastActivity = Activity(timestamp: timestamp!, duration: elapsedTime.maxValue, title: activityTitle.stringValue)
+        lastActivity = Activity(timestamp: timestamp!, duration: periodDuration, title: activityTitle.stringValue)
         disableFormular()
         activityTitle.stringValue = lastActivity!.title
         printCurrentDate(activity: lastActivity!)
@@ -42,7 +43,7 @@ class ActivityLogController: NSViewController {
     }
     
     func startPeriod(duration: TimeInterval) {
-        elapsedTime.maxValue = duration
+        periodDuration = duration
         progressPeriod(elapsedTime: 0, remainingTime: duration)
     }
     
