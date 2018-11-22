@@ -18,7 +18,7 @@ class ActivityLogController: NSViewController {
     
     @IBOutlet weak var activityTitleLabel: NSTextField!
     @IBOutlet weak var activityTitle: NSTextField!
-    @IBOutlet weak var logActivity: NSButton!
+    @IBOutlet weak var logActivityButton: NSButton!
     
     @IBOutlet weak var remainingTime: NSTextField!
     @IBOutlet weak var elapsedTime: NSProgressIndicator!
@@ -63,18 +63,18 @@ class ActivityLogController: NSViewController {
         enableFormular()
     }
     
-    private func enableFormular() {
+    func enableFormular() {
         activityTitleLabel.isEnabled = true
         activityTitle.isEnabled = true
-        logActivity.isEnabled = true
+        logActivityButton.isEnabled = true
         
         activityTitle.becomeFirstResponder()
     }
     
-    private func disableFormular() {
+    func disableFormular() {
         activityTitleLabel.isEnabled = false
         activityTitle.isEnabled = false
-        logActivity.isEnabled = false
+        logActivityButton.isEnabled = false
     }
     
     private func printCurrentDate(activity: Activity) {

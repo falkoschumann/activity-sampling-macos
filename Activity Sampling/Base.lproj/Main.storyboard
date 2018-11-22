@@ -471,7 +471,7 @@ DQ
                         <outlet property="activityTitleLabel" destination="563-Jb-8y8" id="g3d-yY-RLp"/>
                         <outlet property="elapsedTime" destination="niV-rd-MHT" id="Hdz-51-VyF"/>
                         <outlet property="log" destination="XUA-2h-Ngv" id="Fai-vB-xkF"/>
-                        <outlet property="logActivity" destination="ACO-wM-22I" id="V6Z-5u-bfu"/>
+                        <outlet property="logActivityButton" destination="ACO-wM-22I" id="FID-DH-Y8p"/>
                         <outlet property="remainingTime" destination="PEF-QC-cUY" id="C4q-Aa-Vxn"/>
                     </connections>
                 </viewController>

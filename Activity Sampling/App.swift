@@ -73,16 +73,16 @@ extension ActivityLogController : PeriodDelegate, NotificationsDelegate {
     // MARK: NotificationsDelegate
     
     func logActivity(_ notifications: Notifications, title: String) {
-        // TODO Not implemented yet.
-        lastActivity = Activity(timestamp: timestamp!, duration: periodDuration, title: title)
+        activityTitle.stringValue = title
+        logActivity(self)
     }
     
     func logSameActivity(_ notifications: Notifications) {
-        // TODO Not implemented yet.
+        logActivity(self)
     }
     
     func logOtherActivity(_ notifications: Notifications) {
-        // TODO Not implemented yet.
+        // TODO: Not implemented yet.
     }
     
 }
