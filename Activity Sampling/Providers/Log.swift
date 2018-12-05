@@ -50,8 +50,8 @@ class Log {
     
     private func createEntry(_ activity: Activity) -> Data {
         var row: [String] = []
-        let timestampFormatter = ISO8601DateFormatter()
-        timestampFormatter.timeZone = TimeZone.current
+        let timestampFormatter = DateFormatter()
+        timestampFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         row.append(timestampFormatter.string(from: activity.timestamp))
         row.append(String(Int(activity.duration / 60)))
         row.append("\"".appending(activity.title).appending("\""))
