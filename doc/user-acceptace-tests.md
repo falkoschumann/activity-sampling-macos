@@ -1,8 +1,11 @@
 # User Acceptance Tests
 
-## Scenario: User logs first activity 
+## Background
 
 *   Given the period duration is one minute
+
+## Scenario: User logs first activity 
+
 *   And there is no current activity
 *   When the period ends
 *   And the user logs activity "Lorem ipsum"
@@ -14,7 +17,6 @@
 
 ## Scenario: User logs another activity
 
-*   Given the period duration is one minute
 *   And an activity was logged
 *   When the period ends
 *   And the user logs activity "Lorem ipsum"
@@ -24,7 +26,6 @@
 
 ## Scenario: User logs same activity
 
-*   Given the period duration is one minute
 *   And the activity "Lorem ipsum" was logged
 *   When the period ends
 *   And the user logs same activity
