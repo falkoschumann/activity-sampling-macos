@@ -17,10 +17,17 @@ class Log {
     
     weak var delegate: LogDelegate?
     
-    var fileURL: URL?
+    let fileURL: URL? = getFileURL()
     
     func write(_ activity: Activity) {
         writeToCSV(activity)
+    }
+    
+    private static func getFileURL() -> URL? {
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsURL = urls.first
+        return documentsURL!.appendingPathComponent("activity-log.csv")
     }
     
     private func writeToCSV(_ activity: Activity) {

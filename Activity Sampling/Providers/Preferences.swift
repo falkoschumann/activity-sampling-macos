@@ -13,7 +13,6 @@ class Preferences {
     static let shared = Preferences()
     
     static let periodDurationChanged = Notification.Name.init(rawValue: "Preferences.PeriodDurationChanged")
-    static let activityLogFileChanged = Notification.Name.init(rawValue: "Preferences.ActivityLogFileChanged")
     
     private static let defaultPeriodDuration = TimeInterval(20 * 60)
     
@@ -34,29 +33,8 @@ class Preferences {
         }
     }
     
-    var activityLogFile: URL {
-        get {
-            if let urlString = UserDefaults.standard.string(forKey: "log.file") {
-                return URL(fileURLWithPath: urlString)
-            } else {
-                return Preferences.defaultActivityLogFile()
-            }
-        }
-        set {
-            UserDefaults.standard.set(newValue.path, forKey: "log.file")
-            NotificationCenter.default.post(name: Preferences.activityLogFileChanged, object: self)
-        }
-    }
-    
     private func isDurationValid(_ duration: TimeInterval) -> Bool {
         return duration > 0 && duration <= 24 * 60 * 60
-    }
-    
-    private static func defaultActivityLogFile() -> URL {
-        let fileManager = FileManager.default
-        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsUrl = urls.first
-        return documentsUrl!.appendingPathComponent("activity-log.csv")
     }
     
 }

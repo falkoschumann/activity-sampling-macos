@@ -19,15 +19,10 @@ class App {
     
     private init() {
         period.duration = Preferences.shared.periodDuration
-        log.fileURL = Preferences.shared.activityLogFile
-        
         clock.delegate = period
         
         NotificationCenter.default.addObserver(forName: Preferences.periodDurationChanged, object: nil, queue: nil) { (_) in
             self.period.duration = Preferences.shared.periodDuration
-        }
-        NotificationCenter.default.addObserver(forName: Preferences.activityLogFileChanged, object: nil, queue: nil) { (_) in
-            self.log.fileURL = Preferences.shared.activityLogFile
         }
     }
     

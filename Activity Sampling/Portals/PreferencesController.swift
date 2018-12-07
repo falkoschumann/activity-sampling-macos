@@ -13,8 +13,6 @@ class PreferencesController: NSViewController {
     @IBOutlet weak var periodDurationTextField: NSTextField!
     @IBOutlet weak var periodDurationStepper: NSStepper!
     
-    @IBOutlet weak var activityLogFileTextField: NSTextField!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePeriod()
@@ -22,29 +20,12 @@ class PreferencesController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        loadPreferences()
+        updatePeriodDuration()
     }
     
     @IBAction func periodDurationChanged(_ sender: Any) {
         Preferences.shared.periodDuration = Double(periodDurationTextField.intValue * 60)
-    }
-    
-    @IBAction func logFileChanged(_ sender: Any?) {
-        Preferences.shared.activityLogFile = URL(fileURLWithPath: activityLogFileTextField.stringValue)
-    }
-    
-    @IBAction func chooseLogFile(_ sender: Any) {
-        let panel = NSSavePanel()
-        panel.title = "Save activity log file"
-        panel.prompt = "Save"
-        panel.worksWhenModal = true
-        panel.canCreateDirectories = true
-        panel.nameFieldStringValue = "activity-log.csv"
-        panel.runModal()
-        if let url = panel.url {
-            activityLogFileTextField.stringValue = url.path
-            logFileChanged(nil)
-        }
+        updatePeriodDuration()
     }
     
     private func configurePeriod() {
@@ -53,9 +34,8 @@ class PreferencesController: NSViewController {
         periodDurationTextField.formatter = periodFormatter
     }
     
-    private func loadPreferences() {
+    private func updatePeriodDuration() {
         periodDurationTextField.intValue = Int32(Preferences.shared.periodDuration / 60)
-        activityLogFileTextField.stringValue = Preferences.shared.activityLogFile.path
     }
     
 }
