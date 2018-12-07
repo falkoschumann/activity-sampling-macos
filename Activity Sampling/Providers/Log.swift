@@ -9,8 +9,8 @@
 import Foundation
 
 protocol LogDelegate : class {
-    func successfullyWritten(_ log: Log, activity: Activity)
-    func writeFailed(_ log: Log, message: String)
+    func successfullyWritten(activity: Activity)
+    func writeFailed(message: String)
 }
 
 class Log {
@@ -38,10 +38,10 @@ class Log {
                 }
                 let entry = createEntry(activity)
                 try writeEntry(entry, to: url)
-                delegate?.successfullyWritten(self, activity: activity)
+                delegate?.successfullyWritten(activity: activity)
             } catch {
                 print("Error writing log: \(error)")
-                delegate?.writeFailed(self, message: error.localizedDescription)
+                delegate?.writeFailed(message: error.localizedDescription)
             }
         }
     }

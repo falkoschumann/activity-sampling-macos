@@ -13,9 +13,9 @@ import Foundation
 // UNUserNotificationCenter.current()
 
 protocol NotificationsDelegate {
-    func logActivity(_ notifications: Notifications, title: String)
-    func logSameActivity(_ notifications: Notifications)
-    func logOtherActivity(_ notifications: Notifications)
+    func logActivity(title: String)
+    func logSameActivity()
+    func logOtherActivity()
 }
 
 class Notifications : NSObject {
@@ -71,7 +71,7 @@ extension Notifications : NSUserNotificationCenterDelegate {
         switch (notification.activationType) {
         case .actionButtonClicked:
             print("action button clicked: log other activity")
-            delegate?.logOtherActivity(self)
+            delegate?.logOtherActivity()
             break
         case .additionalActionClicked:
             print("additional action clicked")
@@ -85,7 +85,7 @@ extension Notifications : NSUserNotificationCenterDelegate {
             break
         case .replied:
             print("replied: log activity")
-            delegate?.logActivity(self, title: notification.response!.string)
+            delegate?.logActivity(title: notification.response!.string)
             break
         default:
             break
@@ -99,7 +99,7 @@ extension Notifications : NSUserNotificationCenterDelegate {
     @objc func userNotificationCenter(_ center: NSUserNotificationCenter, didDismissAlert notification: NSUserNotification) {
         if (notification.activationType == .none && notification.identifier == Notifications.askIfSameActivityNotification) {
             print("did dismiss alert: log same activity")
-            delegate?.logSameActivity(self)
+            delegate?.logSameActivity()
         } else {
             print("did dismiss alert")
         }

@@ -30,7 +30,7 @@ class App {
 
 extension Period : ClockDelegate {
     
-    func ticked(_ clock: Clock, currentTime: Date) {
+    func ticked(currentTime: Date) {
         check(currentTime)
     }
     
@@ -48,15 +48,15 @@ extension ActivityLogController : PeriodDelegate, NotificationsDelegate {
     
     // MARK: PeriodDelegate
     
-    func started(_ period: Period, duration: TimeInterval) {
+    func started(duration: TimeInterval) {
         startPeriod(duration: duration)
     }
     
-    func progressed(_ period: Period, elapsedTime: TimeInterval, remainingTime: TimeInterval) {
+    func progressed(elapsedTime: TimeInterval, remainingTime: TimeInterval) {
         progressPeriod(elapsedTime: elapsedTime, remainingTime: remainingTime)
     }
     
-    func ended(_ period: Period, timestamp: Date) {
+    func ended(timestamp: Date) {
         endPeriod(timestamp: timestamp)
         if let activity = lastActivity {
             App.shared.notifications.askIfSameActivity(title: activity.title)
@@ -67,16 +67,16 @@ extension ActivityLogController : PeriodDelegate, NotificationsDelegate {
     
     // MARK: NotificationsDelegate
     
-    func logActivity(_ notifications: Notifications, title: String) {
+    func logActivity(title: String) {
         activityTitle.stringValue = title
         logActivity(self)
     }
     
-    func logSameActivity(_ notifications: Notifications) {
+    func logSameActivity() {
         logActivity(self)
     }
     
-    func logOtherActivity(_ notifications: Notifications) {
+    func logOtherActivity() {
         // TODO: Not implemented yet.
     }
     
@@ -84,7 +84,7 @@ extension ActivityLogController : PeriodDelegate, NotificationsDelegate {
 
 extension Log : ActivityLogDelegate {
     
-    func logged(_ activityLog: ActivityLogController, activity: Activity) {
+    func logged(activity: Activity) {
         write(activity)
     }
     

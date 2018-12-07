@@ -9,7 +9,7 @@
 import Cocoa
 
 protocol ActivityLogDelegate : class {
-    func logged(_ activityLog: ActivityLogController, activity: Activity)
+    func logged(activity: Activity)
 }
 
 class ActivityLogController: NSViewController {
@@ -39,7 +39,7 @@ class ActivityLogController: NSViewController {
         activityTitle.stringValue = lastActivity!.title
         printCurrentDate(activity: lastActivity!)
         printActivity(lastActivity!)
-        delegate?.logged(self, activity: lastActivity!)
+        delegate?.logged(activity: lastActivity!)
     }
     
     func startPeriod(duration: TimeInterval) {
