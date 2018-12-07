@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol LogDelegate : class {
+protocol LogDelegate {
     func successfullyWritten(activity: Activity)
     func writeFailed(message: String)
 }
 
 class Log {
     
-    weak var delegate: LogDelegate?
+    var delegate: LogDelegate?
     
     let fileURL: URL? = getFileURL()
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol PeriodDelegate : class {
+protocol PeriodDelegate {
     func started(duration: TimeInterval)
     func progressed(elapsedTime: TimeInterval, remainingTime: TimeInterval)
     func ended(timestamp: Date)
@@ -16,7 +16,7 @@ protocol PeriodDelegate : class {
 
 class Period {
     
-    weak var delegate: PeriodDelegate?
+    var delegate: PeriodDelegate?
     
     var duration: TimeInterval = 20 * 60 {
         didSet {

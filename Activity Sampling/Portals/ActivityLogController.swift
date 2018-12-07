@@ -8,13 +8,13 @@
 
 import Cocoa
 
-protocol ActivityLogDelegate : class {
+protocol ActivityLogDelegate {
     func logged(activity: Activity)
 }
 
 class ActivityLogController: NSViewController {
     
-    weak var delegate: ActivityLogDelegate?
+    var delegate: ActivityLogDelegate?
     
     @IBOutlet weak var activityTitleLabel: NSTextField!
     @IBOutlet weak var activityTitle: NSTextField!
