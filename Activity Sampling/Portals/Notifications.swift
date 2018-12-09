@@ -41,7 +41,7 @@ class Notifications : NSObject {
         notification.responsePlaceholder = "Your current activity"
         
         NSUserNotificationCenter.default.deliver(notification)
-        self.lastNotification = notification
+        lastNotification = notification
     }
     
     func askIfSameActivity(title: String) {
@@ -55,7 +55,12 @@ class Notifications : NSObject {
         notification.otherButtonTitle = "Same Activity"
         
         NSUserNotificationCenter.default.deliver(notification)
-        self.lastNotification = notification
+        lastNotification = notification
+    }
+    
+    func removeNotifivation() {
+        NSUserNotificationCenter.default.removeDeliveredNotification(lastNotification!)
+        lastNotification = nil
     }
     
 }

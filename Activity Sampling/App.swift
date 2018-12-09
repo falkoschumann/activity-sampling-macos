@@ -46,6 +46,10 @@ extension ActivityLogController : PeriodDelegate, NotificationsDelegate {
         delegate = App.shared.log
     }
     
+    override func viewWillDisappear() {
+        App.shared.notifications.removeNotifivation()
+    }
+    
     // MARK: PeriodDelegate
     
     func started(duration: TimeInterval) {
@@ -86,6 +90,7 @@ extension Log : ActivityLogDelegate {
     
     func logged(activity: Activity) {
         write(activity)
+        App.shared.notifications.removeNotifivation()
     }
     
 }
