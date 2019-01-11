@@ -21,4 +21,12 @@
 
 ## Flow Design
 
-![Flow](flow-design.png)
+![Flow Design](flow-design.png)
+
+__Legend:__ circle: functional unit, rectangle: portal, triangle: provider
+
+### UI
+
+Decomposition of portal _UI_.
+
+![Flow Design UI](flow-design-ui.png)

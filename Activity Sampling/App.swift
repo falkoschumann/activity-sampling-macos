@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+/*
 class App {
     
     static let shared = App()
@@ -94,3 +94,4 @@ extension Log : ActivityLogDelegate {
     }
     
 }
+*/

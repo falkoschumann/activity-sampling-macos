@@ -18,7 +18,7 @@ protocol NotificationsDelegate {
     func logOtherActivity()
 }
 
-class Notifications : NSObject {
+class Notifications: NSObject {
     
     static let askAboutCurrentActivityNotification = "askAboutCurrentActivityNotification"
     static let askIfSameActivityNotification = "askIfSameActivityNotification"

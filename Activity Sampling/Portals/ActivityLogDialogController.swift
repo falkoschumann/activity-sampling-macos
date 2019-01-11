@@ -8,13 +8,7 @@
 
 import Cocoa
 
-protocol ActivityLogDelegate {
-    func logged(activity: Activity)
-}
-
-class ActivityLogController: NSViewController {
-    
-    var delegate: ActivityLogDelegate?
+class ActivityLogDialogController: NSViewController, PeriodDelegate {
     
     @IBOutlet weak var activityTitleLabel: NSTextField!
     @IBOutlet weak var activityTitle: NSTextField!
@@ -25,12 +19,22 @@ class ActivityLogController: NSViewController {
     
     @IBOutlet var log: NSTextView!
     
-    internal var timestamp: Date?
-    internal var lastActivity: Activity?
+    private var timestamp: Date?
+    private var lastActivity: Activity?
     
-    internal var periodDuration: TimeInterval {
+    private var periodDuration: TimeInterval {
         get { return elapsedTime.maxValue }
         set { elapsedTime.maxValue = newValue }
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        Head.shared.periodDelegate = self
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        Head.shared.periodDelegate = nil
     }
     
     @IBAction func logActivity(_ sender: Any) {
@@ -39,31 +43,10 @@ class ActivityLogController: NSViewController {
         activityTitle.stringValue = lastActivity!.title
         printCurrentDate(activity: lastActivity!)
         printActivity(lastActivity!)
-        delegate?.logged(activity: lastActivity!)
+        Head.shared.write(activity: lastActivity!)
     }
     
-    func startPeriod(duration: TimeInterval) {
-        periodDuration = duration
-        progressPeriod(elapsedTime: 0, remainingTime: duration)
-    }
-    
-    func progressPeriod(elapsedTime: TimeInterval, remainingTime: TimeInterval) {
-        self.elapsedTime.doubleValue = elapsedTime
-        
-        let time = Date(timeIntervalSinceReferenceDate: remainingTime)
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .medium
-        formatter.timeZone = TimeZone(identifier: "UTC")
-        self.remainingTime.stringValue = formatter.string(from: time)
-    }
-    
-    func endPeriod(timestamp: Date) {
-        self.timestamp = timestamp
-        enableFormular()
-    }
-    
-    func enableFormular() {
+    private func enableFormular() {
         activityTitleLabel.isEnabled = true
         activityTitle.isEnabled = true
         logActivityButton.isEnabled = true
@@ -71,7 +54,7 @@ class ActivityLogController: NSViewController {
         activityTitle.becomeFirstResponder()
     }
     
-    func disableFormular() {
+    private func disableFormular() {
         activityTitleLabel.isEnabled = false
         activityTitle.isEnabled = false
         logActivityButton.isEnabled = false
@@ -97,6 +80,29 @@ class ActivityLogController: NSViewController {
         let timestamp = DateFormatter.localizedString(from: activity.timestamp, dateStyle: .none, timeStyle: .short)
         log.textStorage?.append(NSAttributedString(string: timestamp + " - " + activity.title + "\n",
                                                    attributes: [.foregroundColor: NSColor.textColor]))
+    }
+    
+    // MARK: Period Delegate
+    
+    func periodStarted(duration: TimeInterval) {
+        periodDuration = duration
+        periodProgressed(remainingTime: duration)
+    }
+    
+    func periodProgressed(remainingTime: TimeInterval) {
+        elapsedTime.doubleValue = periodDuration - remainingTime
+        
+        let time = Date(timeIntervalSinceReferenceDate: remainingTime)
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .medium
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        self.remainingTime.stringValue = formatter.string(from: time)
+    }
+    
+    func periodEnded(timestamp: Date) {
+        self.timestamp = timestamp
+        enableFormular()
     }
     
 }

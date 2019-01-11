@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ClockDelegate {
-    func ticked(currentTime: Date)
+    func clockTicked(currentTime: Date)
 }
 
 class Clock {
@@ -20,7 +20,7 @@ class Clock {
     
     init() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            self.delegate?.ticked(currentTime: Date())
+            self.delegate?.clockTicked(currentTime: Date())
         }
     }
     

@@ -191,10 +191,10 @@
             </objects>
             <point key="canvasLocation" x="725" y="8"/>
         </scene>
-        <!--Preferences Controller-->
+        <!--Preferences Dialog Controller-->
         <scene sceneID="gYN-Vg-a3N">
             <objects>
-                <viewController id="leU-cm-DbI" customClass="PreferencesController" customModule="Activity_Sampling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="leU-cm-DbI" customClass="PreferencesDialogController" customModule="Activity_Sampling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="trP-tu-uNS">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="64"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -287,10 +287,10 @@
             </objects>
             <point key="canvasLocation" x="725" y="373"/>
         </scene>
-        <!--Activity Log Controller-->
+        <!--Activity Log Dialog Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ActivityLogController" customModule="Activity_Sampling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ActivityLogDialogController" customModule="Activity_Sampling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="380" height="580"/>
                         <autoresizingMask key="autoresizingMask"/>
