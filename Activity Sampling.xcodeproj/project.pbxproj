@@ -24,7 +24,6 @@
 		CCE88AF121E272F60059531F /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE88AF021E272F60059531F /* Body.swift */; };
 		CCE88AF321E279D60059531F /* Head.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE88AF221E279D60059531F /* Head.swift */; };
 		CCE88AF521E52B4F0059531F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE88AF421E52B4F0059531F /* Preferences.swift */; };
-		CCECDB3421A5832D00265AE2 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCECDB3321A5832D00265AE2 /* App.swift */; };
 		CCECDB3621A5EE8100265AE2 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCECDB3521A5EE8100265AE2 /* NotificationsController.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +68,6 @@
 		CCE88AF021E272F60059531F /* Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
 		CCE88AF221E279D60059531F /* Head.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Head.swift; sourceTree = "<group>"; };
 		CCE88AF421E52B4F0059531F /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		CCECDB3321A5832D00265AE2 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CCECDB3521A5EE8100265AE2 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +118,6 @@
 				CCB67AFA213DC10200B12646 /* Providers */,
 				CCE88AF221E279D60059531F /* Head.swift */,
 				CC25634A21359B0100D59D17 /* AppDelegate.swift */,
-				CCECDB3321A5832D00265AE2 /* App.swift */,
 				CC25634E21359B0400D59D17 /* Assets.xcassets */,
 				CC25635021359B0400D59D17 /* Main.storyboard */,
 				CC25635321359B0400D59D17 /* Info.plist */,
@@ -312,7 +309,6 @@
 				CC069C6D213FD2870028FA7A /* UserDefaultsPreferences.swift in Sources */,
 				CC25634D21359B0100D59D17 /* ActivityLogDialogController.swift in Sources */,
 				CCC1BA3A2136A64800029006 /* Period.swift in Sources */,
-				CCECDB3421A5832D00265AE2 /* App.swift in Sources */,
 				CC25634B21359B0100D59D17 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
