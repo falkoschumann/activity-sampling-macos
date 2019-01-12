@@ -19,13 +19,19 @@ class ActivityLogDialogController: NSViewController, PeriodDelegate {
     
     @IBOutlet var log: NSTextView!
     
-    private var timestamp: Date?
-    private var lastActivity: Activity?
+    private var periodTimestamp: Date!
     
     private var periodDuration: TimeInterval {
         get { return elapsedTime.maxValue }
         set { elapsedTime.maxValue = newValue }
     }
+    
+    private var lastActivityTitle: String {
+        get { return activityTitle.stringValue }
+        set { activityTitle.stringValue = newValue }
+    }
+    
+    private var lastTimestamp: Date!
     
     override func viewWillAppear() {
         super.viewWillAppear()
@@ -38,12 +44,11 @@ class ActivityLogDialogController: NSViewController, PeriodDelegate {
     }
     
     @IBAction func logActivity(_ sender: Any) {
-        lastActivity = Activity(timestamp: timestamp!, duration: periodDuration, title: activityTitle.stringValue)
         disableFormular()
-        activityTitle.stringValue = lastActivity!.title
-        printCurrentDate(activity: lastActivity!)
-        printActivity(lastActivity!)
-        Head.shared.write(activity: lastActivity!)
+        printCurrentDate(periodTimestamp)
+        let activity = Activity(timestamp: periodTimestamp, duration: periodDuration, title: lastActivityTitle)
+        printActivity(activity)
+        Head.shared.write(activity: activity)
     }
     
     private func enableFormular() {
@@ -60,20 +65,21 @@ class ActivityLogDialogController: NSViewController, PeriodDelegate {
         logActivityButton.isEnabled = false
     }
     
-    private func printCurrentDate(activity: Activity) {
-        if sameDay(activity: activity) {
+    private func printCurrentDate(_ timestamp: Date) {
+        if sameDay(timestamp) {
             return
         }
-        let date = DateFormatter.localizedString(from: activity.timestamp, dateStyle: .full, timeStyle: .none)
+        let date = DateFormatter.localizedString(from: timestamp, dateStyle: .full, timeStyle: .none)
         log.textStorage?.append(NSAttributedString(string: date + "\n",
                                                    attributes: [.foregroundColor: NSColor.textColor]))
     }
     
-    private func sameDay(activity: Activity) -> Bool {
-        guard lastActivity != nil else {
+    private func sameDay(_ timestamp: Date) -> Bool {
+        guard lastTimestamp != nil else {
             return false
         }
-        return Calendar.current.compare(lastActivity!.timestamp, to: activity.timestamp, toGranularity: .day) != .orderedSame
+        
+        return Calendar.current.compare(lastTimestamp, to: timestamp, toGranularity: .day) != .orderedSame
     }
     
     private func printActivity(_ activity: Activity){
@@ -92,16 +98,16 @@ class ActivityLogDialogController: NSViewController, PeriodDelegate {
     func periodProgressed(remainingTime: TimeInterval) {
         elapsedTime.doubleValue = periodDuration - remainingTime
         
-        let time = Date(timeIntervalSinceReferenceDate: remainingTime)
         let formatter = DateFormatter()
         formatter.dateStyle = .none
         formatter.timeStyle = .medium
         formatter.timeZone = TimeZone(identifier: "UTC")
+        let time = Date(timeIntervalSinceReferenceDate: remainingTime)
         self.remainingTime.stringValue = formatter.string(from: time)
     }
     
     func periodEnded(timestamp: Date) {
-        self.timestamp = timestamp
+        periodTimestamp = timestamp
         enableFormular()
     }
     

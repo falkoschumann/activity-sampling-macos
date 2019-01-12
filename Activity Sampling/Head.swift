@@ -16,6 +16,7 @@ class Head: ClockDelegate {
         get { return body.periodDelegate }
         set { body.periodDelegate = newValue }
     }
+    
     var periodDuration: TimeInterval {
         get { return body.periodDuration }
         set { body.periodDuration = newValue }
