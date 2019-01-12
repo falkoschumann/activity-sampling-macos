@@ -13,6 +13,8 @@ class PreferencesDialogController: NSViewController {
     @IBOutlet weak var periodDurationTextField: NSTextField!
     @IBOutlet weak var periodDurationStepper: NSStepper!
     
+    private let head = Head.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initPeriodDuration()
@@ -30,7 +32,7 @@ class PreferencesDialogController: NSViewController {
     }
     
     private func loadPeriodDuration() {
-        periodDurationTextField.intValue = Int32(Head.shared.periodDuration / 60)
+        periodDurationTextField.intValue = Int32(head.periodDuration / 60)
     }
     
     @IBAction func periodDurationChanged(_ sender: Any) {
@@ -39,7 +41,7 @@ class PreferencesDialogController: NSViewController {
     }
     
     private func storePeriodDuration() {
-        Head.shared.periodDuration = Double(periodDurationTextField.intValue * 60)
+        head.periodDuration = Double(periodDurationTextField.intValue * 60)
     }
     
 }

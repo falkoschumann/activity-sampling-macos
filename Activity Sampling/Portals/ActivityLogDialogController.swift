@@ -31,7 +31,8 @@ class ActivityLogDialogController: NSViewController {
         set { activityTitle.stringValue = newValue }
     }
     
-    private let notifications = Notifications()
+    private let head = Head.shared
+    private let notifications = NotificationsController()
     private var lastTimestamp: Date!
     
     override func viewDidLoad() {
@@ -41,12 +42,12 @@ class ActivityLogDialogController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        Head.shared.periodDelegate = self
+        head.periodDelegate = self
     }
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        Head.shared.periodDelegate = nil
+        head.periodDelegate = nil
     }
     
     @IBAction func logActivity(_ sender: Any) {
@@ -54,7 +55,7 @@ class ActivityLogDialogController: NSViewController {
         printCurrentDate(periodTimestamp)
         let activity = Activity(timestamp: periodTimestamp, duration: periodDuration, title: lastActivityTitle)
         printActivity(activity)
-        Head.shared.write(activity: activity)
+        head.write(activity: activity)
         
         lastTimestamp = periodTimestamp
     }

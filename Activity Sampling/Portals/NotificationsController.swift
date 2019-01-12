@@ -17,7 +17,7 @@ protocol NotificationsDelegate: AnyObject {
     func logSameActivity()
 }
 
-class Notifications: NSObject {
+class NotificationsController: NSObject {
     
     static let askAboutCurrentActivityNotification = "askAboutCurrentActivityNotification"
     static let askIfSameActivityNotification = "askIfSameActivityNotification"
@@ -37,7 +37,7 @@ class Notifications: NSObject {
     
     func askAboutCurrentActivity() {
         let notification = NSUserNotification()
-        notification.identifier = Notifications.askAboutCurrentActivityNotification
+        notification.identifier = NotificationsController.askAboutCurrentActivityNotification
         notification.title = "What are you working on?"
         notification.soundName = NSUserNotificationDefaultSoundName
         notification.hasReplyButton = true
@@ -49,7 +49,7 @@ class Notifications: NSObject {
     
     func askIfSameActivity(title: String) {
         let notification = NSUserNotification()
-        notification.identifier = Notifications.askIfSameActivityNotification
+        notification.identifier = NotificationsController.askIfSameActivityNotification
         notification.title = "What are you working on?"
         notification.soundName = NSUserNotificationDefaultSoundName
         notification.informativeText = title
@@ -68,7 +68,7 @@ class Notifications: NSObject {
     
 }
 
-extension Notifications : NSUserNotificationCenterDelegate {
+extension NotificationsController : NSUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, didDeliver notification: NSUserNotification) {
         print("did deliver")
@@ -104,7 +104,7 @@ extension Notifications : NSUserNotificationCenterDelegate {
     }
     
     @objc func userNotificationCenter(_ center: NSUserNotificationCenter, didDismissAlert notification: NSUserNotification) {
-        if (notification.activationType == .none && notification.identifier == Notifications.askIfSameActivityNotification) {
+        if (notification.activationType == .none && notification.identifier == NotificationsController.askIfSameActivityNotification) {
             print("did dismiss alert: log same activity")
             delegate?.logSameActivity()
         } else {
