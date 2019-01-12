@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol ClockDelegate {
+protocol ClockDelegate: AnyObject {
     func clockTicked(currentTime: Date)
 }
 
 class Clock {
     
-    var delegate: ClockDelegate?
+    weak var delegate: ClockDelegate?
     
     private var timer: Timer!
     

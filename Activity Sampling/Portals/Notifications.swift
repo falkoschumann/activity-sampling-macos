@@ -12,7 +12,7 @@ import Foundation
 // import UserNotifications
 // UNUserNotificationCenter.current()
 
-protocol NotificationsDelegate {
+protocol NotificationsDelegate: AnyObject {
     func logActivity(title: String)
     func logSameActivity()
     func logOtherActivity()
@@ -23,13 +23,17 @@ class Notifications: NSObject {
     static let askAboutCurrentActivityNotification = "askAboutCurrentActivityNotification"
     static let askIfSameActivityNotification = "askIfSameActivityNotification"
     
-    var delegate: NotificationsDelegate?
+    weak var delegate: NotificationsDelegate?
     
     private var lastNotification: NSUserNotification?
     
     override init() {
         super.init()
         NSUserNotificationCenter.default.delegate = self
+    }
+    
+    deinit {
+        removeNotifivation()
     }
     
     func askAboutCurrentActivity() {
