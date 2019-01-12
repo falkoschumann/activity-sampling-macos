@@ -15,7 +15,6 @@ import Foundation
 protocol NotificationsDelegate: AnyObject {
     func logActivity(title: String)
     func logSameActivity()
-    func logOtherActivity()
 }
 
 class Notifications: NSObject {
@@ -80,7 +79,6 @@ extension Notifications : NSUserNotificationCenterDelegate {
         switch (notification.activationType) {
         case .actionButtonClicked:
             print("action button clicked: log other activity")
-            delegate?.logOtherActivity()
             break
         case .additionalActionClicked:
             print("additional action clicked")

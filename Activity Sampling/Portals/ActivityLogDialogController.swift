@@ -31,7 +31,13 @@ class ActivityLogDialogController: NSViewController {
         set { activityTitle.stringValue = newValue }
     }
     
+    private let notifications = Notifications()
     private var lastTimestamp: Date!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        notifications.delegate = self
+    }
     
     override func viewWillAppear() {
         super.viewWillAppear()
@@ -49,6 +55,8 @@ class ActivityLogDialogController: NSViewController {
         let activity = Activity(timestamp: periodTimestamp, duration: periodDuration, title: lastActivityTitle)
         printActivity(activity)
         Head.shared.write(activity: activity)
+        
+        lastTimestamp = periodTimestamp
     }
     
     private func enableFormular() {
@@ -57,12 +65,19 @@ class ActivityLogDialogController: NSViewController {
         logActivityButton.isEnabled = true
         
         activityTitle.becomeFirstResponder()
+        if lastTimestamp == nil {
+            notifications.askAboutCurrentActivity()
+        } else {
+            notifications.askIfSameActivity(title: lastActivityTitle)
+        }
     }
     
     private func disableFormular() {
         activityTitleLabel.isEnabled = false
         activityTitle.isEnabled = false
         logActivityButton.isEnabled = false
+        
+        notifications.removeNotifivation()
     }
     
     private func printCurrentDate(_ timestamp: Date) {
@@ -79,7 +94,7 @@ class ActivityLogDialogController: NSViewController {
             return false
         }
         
-        return Calendar.current.compare(lastTimestamp, to: timestamp, toGranularity: .day) != .orderedSame
+        return Calendar.current.compare(lastTimestamp, to: timestamp, toGranularity: .day) == .orderedSame
     }
     
     private func printActivity(_ activity: Activity){
@@ -111,6 +126,19 @@ extension ActivityLogDialogController: PeriodDelegate {
     func periodEnded(timestamp: Date) {
         periodTimestamp = timestamp
         enableFormular()
+    }
+    
+}
+
+extension ActivityLogDialogController: NotificationsDelegate {
+    
+    func logActivity(title: String) {
+        activityTitle.stringValue = title
+        logActivity(self)
+    }
+    
+    func logSameActivity() {
+        logActivity(self)
     }
     
 }
