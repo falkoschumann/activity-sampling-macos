@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ActivityLogDialogController: NSViewController, PeriodDelegate {
+class ActivityLogDialogController: NSViewController {
     
     @IBOutlet weak var activityTitleLabel: NSTextField!
     @IBOutlet weak var activityTitle: NSTextField!
@@ -88,7 +88,9 @@ class ActivityLogDialogController: NSViewController, PeriodDelegate {
                                                    attributes: [.foregroundColor: NSColor.textColor]))
     }
     
-    // MARK: Period Delegate
+}
+
+extension ActivityLogDialogController: PeriodDelegate {
     
     func periodStarted(duration: TimeInterval) {
         periodDuration = duration
