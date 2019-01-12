@@ -22,11 +22,10 @@ class Head {
         set { body.periodDuration = newValue }
     }
     
-    private let body: Body
+    private let body = Body(activityLog: CSVActivityLog(), preferences: UserDefaultsPreferences())
     private let clock = Clock()
     
     init() {
-        body = Body(activityLog: CSVActivityLog(), preferences: UserDefaultsPreferences())
         clock.delegate = self
     }
     
