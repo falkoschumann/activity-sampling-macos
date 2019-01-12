@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Head: ClockDelegate {
+class Head {
     
     static let shared = Head()
     
@@ -34,7 +34,9 @@ class Head: ClockDelegate {
         body.write(activity: activity)
     }
     
-    // MARK: Clock Delegate
+}
+
+extension Head: ClockDelegate {
     
     func clockTicked(currentTime: Date) {
         body.check(currentTime: currentTime)
