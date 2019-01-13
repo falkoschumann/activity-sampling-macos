@@ -8,19 +8,19 @@
 
 import Foundation
 
-protocol ClockDelegate {
-    func ticked(currentTime: Date)
+protocol ClockDelegate: AnyObject {
+    func clockTicked(currentTime: Date)
 }
 
 class Clock {
     
-    var delegate: ClockDelegate?
+    weak var delegate: ClockDelegate?
     
     private var timer: Timer!
     
     init() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            self.delegate?.ticked(currentTime: Date())
+            self.delegate?.clockTicked(currentTime: Date())
         }
     }
     

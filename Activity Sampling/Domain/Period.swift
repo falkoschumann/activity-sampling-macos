@@ -8,15 +8,15 @@
 
 import Foundation
 
-protocol PeriodDelegate {
-    func started(duration: TimeInterval)
-    func progressed(elapsedTime: TimeInterval, remainingTime: TimeInterval)
-    func ended(timestamp: Date)
+protocol PeriodDelegate: AnyObject {
+    func periodStarted(duration: TimeInterval)
+    func periodProgressed(remainingTime: TimeInterval)
+    func periodEnded(timestamp: Date)
 }
 
 class Period {
     
-    var delegate: PeriodDelegate?
+    weak var delegate: PeriodDelegate?
     
     var duration: TimeInterval = 20 * 60 {
         didSet {
@@ -24,17 +24,21 @@ class Period {
         }
     }
     
+    var isInProgress: Bool {
+        get { return start != nil }
+    }
+    
     private var start: Date!
     
-    func check(_ currentTime: Date) {
+    func check(currentTime: Date) {
         classify(currentTime, onStarted: start, onProgressed: progress, onEnded: end)
     }
     
     private func classify(_ currentTime: Date,
                           onStarted: (Date) -> Void,
-                          onProgressed: (TimeInterval, TimeInterval) -> Void,
+                          onProgressed: (TimeInterval) -> Void,
                           onEnded: (Date) -> Void) {
-        guard start != nil else {
+        guard isInProgress else {
             onStarted(currentTime)
             return
         }
@@ -42,7 +46,7 @@ class Period {
         let elapsedTime = currentTime.timeIntervalSince(start)
         let remainingTime = duration - elapsedTime
         if remainingTime > 0 {
-            onProgressed(elapsedTime, remainingTime)
+            onProgressed(remainingTime)
         } else {
             onEnded(currentTime)
         }
@@ -50,16 +54,16 @@ class Period {
     
     private func start(_ timestamp: Date) {
         self.start = timestamp
-        delegate?.started(duration: duration)
+        delegate?.periodStarted(duration: duration)
     }
     
-    private func progress(_ elapsedTime: TimeInterval, _ remainingTime: TimeInterval) {
-        delegate?.progressed(elapsedTime: elapsedTime, remainingTime: remainingTime)
+    private func progress(_ remainingTime: TimeInterval) {
+        delegate?.periodProgressed(remainingTime: remainingTime)
     }
     
     private func end(_ timestamp: Date) {
         self.start = nil
-        delegate?.ended(timestamp: timestamp)
+        delegate?.periodEnded(timestamp: timestamp)
     }
     
 }

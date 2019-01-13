@@ -8,11 +8,7 @@
 
 import Foundation
 
-class Preferences {
-    
-    static let shared = Preferences()
-    
-    static let periodDurationChanged = Notification.Name.init(rawValue: "Preferences.PeriodDurationChanged")
+class UserDefaultsPreferences: Preferences {
     
     private static let defaultPeriodDuration = TimeInterval(20 * 60)
     
@@ -22,13 +18,12 @@ class Preferences {
             if isDurationValid(duration) {
                 return duration
             } else {
-                return Preferences.defaultPeriodDuration
+                return UserDefaultsPreferences.defaultPeriodDuration
             }
         }
         set {
             if isDurationValid(newValue) {
                 UserDefaults.standard.set(newValue, forKey: "period.duration")
-                NotificationCenter.default.post(name: Preferences.periodDurationChanged, object: self)
             }
         }
     }
