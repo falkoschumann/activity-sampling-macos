@@ -1,15 +1,17 @@
 //
-//  Activity_Sampling_Tests.swift
+//  UserAcceptanceTests.swift
 //  Activity Sampling Tests
 //
-//  Created by Falko Schumann on 15.11.18.
-//  Copyright © 2018 Falko Schumann. All rights reserved.
+//  Created by Falko Schumann on 12.01.19.
+//  Copyright © 2019 Falko Schumann. All rights reserved.
 //
 
 import XCTest
 
-class Activity_Sampling_Tests: XCTestCase {
+class UserAcceptanceTests: XCTestCase {
 
+    // TODO: Presentation model for activity log dialog
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }

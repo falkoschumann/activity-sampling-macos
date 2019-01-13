@@ -12,18 +12,17 @@ import Foundation
 // import UserNotifications
 // UNUserNotificationCenter.current()
 
-protocol NotificationsDelegate {
+protocol NotificationsDelegate: AnyObject {
     func logActivity(title: String)
     func logSameActivity()
-    func logOtherActivity()
 }
 
-class Notifications : NSObject {
+class NotificationsController: NSObject {
     
     static let askAboutCurrentActivityNotification = "askAboutCurrentActivityNotification"
     static let askIfSameActivityNotification = "askIfSameActivityNotification"
     
-    var delegate: NotificationsDelegate?
+    weak var delegate: NotificationsDelegate?
     
     private var lastNotification: NSUserNotification?
     
@@ -32,9 +31,13 @@ class Notifications : NSObject {
         NSUserNotificationCenter.default.delegate = self
     }
     
+    deinit {
+        removeNotifivation()
+    }
+    
     func askAboutCurrentActivity() {
         let notification = NSUserNotification()
-        notification.identifier = Notifications.askAboutCurrentActivityNotification
+        notification.identifier = NotificationsController.askAboutCurrentActivityNotification
         notification.title = "What are you working on?"
         notification.soundName = NSUserNotificationDefaultSoundName
         notification.hasReplyButton = true
@@ -46,7 +49,7 @@ class Notifications : NSObject {
     
     func askIfSameActivity(title: String) {
         let notification = NSUserNotification()
-        notification.identifier = Notifications.askIfSameActivityNotification
+        notification.identifier = NotificationsController.askIfSameActivityNotification
         notification.title = "What are you working on?"
         notification.soundName = NSUserNotificationDefaultSoundName
         notification.informativeText = title
@@ -65,7 +68,7 @@ class Notifications : NSObject {
     
 }
 
-extension Notifications : NSUserNotificationCenterDelegate {
+extension NotificationsController : NSUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, didDeliver notification: NSUserNotification) {
         print("did deliver")
@@ -76,7 +79,6 @@ extension Notifications : NSUserNotificationCenterDelegate {
         switch (notification.activationType) {
         case .actionButtonClicked:
             print("action button clicked: log other activity")
-            delegate?.logOtherActivity()
             break
         case .additionalActionClicked:
             print("additional action clicked")
@@ -102,7 +104,7 @@ extension Notifications : NSUserNotificationCenterDelegate {
     }
     
     @objc func userNotificationCenter(_ center: NSUserNotificationCenter, didDismissAlert notification: NSUserNotification) {
-        if (notification.activationType == .none && notification.identifier == Notifications.askIfSameActivityNotification) {
+        if (notification.activationType == .none && notification.identifier == NotificationsController.askIfSameActivityNotification) {
             print("did dismiss alert: log same activity")
             delegate?.logSameActivity()
         } else {

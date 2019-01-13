@@ -1,48 +1,31 @@
 //
-//  LogFile.swift
+//  CSVActivityLog.swift
 //  Activity Sampling
 //
-//  Created by Falko Schumann on 03.09.18.
+//  Created by Falko Schumann on 06.01.19.
 //  Copyright © 2018 Falko Schumann. All rights reserved.
 //
 
 import Foundation
 
-protocol LogDelegate {
-    func successfullyWritten(activity: Activity)
-    func writeFailed(message: String)
-}
-
-class Log {
+class CSVActivityLog: ActivityLog {
     
-    var delegate: LogDelegate?
-    
-    let fileURL: URL? = getFileURL()
-    
-    func write(_ activity: Activity) {
-        writeToCSV(activity)
-    }
-    
-    private static func getFileURL() -> URL? {
+    let fileURL: URL = {
         let fileManager = FileManager.default
         let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsURL = urls.first
         return documentsURL!.appendingPathComponent("activity-log.csv")
-    }
+    }()
     
-    private func writeToCSV(_ activity: Activity) {
-        if let url = fileURL {
-            do {
-                if isNewLogFile(url) {
-                    try writeHeader(to: url)
-                }
-                let entry = createEntry(activity)
-                try writeEntry(entry, to: url)
-                delegate?.successfullyWritten(activity: activity)
-            } catch {
-                print("Error writing log: \(error)")
-                delegate?.writeFailed(message: error.localizedDescription)
+    func write(activity: Activity) {
+        do {
+            if isNewLogFile(fileURL) {
+                try writeHeader(to: fileURL)
             }
+            let entry = createEntry(activity)
+            try writeEntry(entry, to: fileURL)
+        } catch {
+            print("Error writing log: \(error)")
         }
     }
     
