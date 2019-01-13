@@ -19,7 +19,11 @@ class ActivityLogDialogController: NSViewController {
     
     @IBOutlet var log: NSTextView!
     
-    private var periodTimestamp: Date!
+    private let head = Head.shared
+    
+    private let notifications = NotificationsController()
+    
+    private var periodTimestamp = Date()
     
     private var periodDuration: TimeInterval {
         get { return elapsedTime.maxValue }
@@ -31,9 +35,11 @@ class ActivityLogDialogController: NSViewController {
         set { activityTitle.stringValue = newValue }
     }
     
-    private let head = Head.shared
-    private let notifications = NotificationsController()
-    private var lastTimestamp: Date!
+    private var lastTimestamp: Date?
+    
+    private var isFirstActivity: Bool {
+        get {return lastActivityTitle.isEmpty }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +59,7 @@ class ActivityLogDialogController: NSViewController {
     @IBAction func logActivity(_ sender: Any) {
         disableFormular()
         printCurrentDate(periodTimestamp)
-        let activity = Activity(timestamp: periodTimestamp, duration: periodDuration, title: lastActivityTitle)
+        let activity = Activity(timestamp: lastTimestamp!, duration: periodDuration, title: lastActivityTitle)
         printActivity(activity)
         head.write(activity: activity)
         
@@ -66,7 +72,7 @@ class ActivityLogDialogController: NSViewController {
         logActivityButton.isEnabled = true
         
         activityTitle.becomeFirstResponder()
-        if lastTimestamp == nil {
+        if isFirstActivity {
             notifications.askAboutCurrentActivity()
         } else {
             notifications.askIfSameActivity(title: lastActivityTitle)
@@ -95,7 +101,7 @@ class ActivityLogDialogController: NSViewController {
             return false
         }
         
-        return Calendar.current.compare(lastTimestamp, to: timestamp, toGranularity: .day) == .orderedSame
+        return Calendar.current.compare(lastTimestamp!, to: timestamp, toGranularity: .day) == .orderedSame
     }
     
     private func printActivity(_ activity: Activity){
@@ -134,7 +140,7 @@ extension ActivityLogDialogController: PeriodDelegate {
 extension ActivityLogDialogController: NotificationsDelegate {
     
     func logActivity(title: String) {
-        activityTitle.stringValue = title
+        lastActivityTitle = title
         logActivity(self)
     }
     
