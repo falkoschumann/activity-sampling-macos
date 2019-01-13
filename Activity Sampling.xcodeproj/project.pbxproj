@@ -15,7 +15,6 @@
 		CCB67AFC213DC13000B12646 /* CSVActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB67AFB213DC13000B12646 /* CSVActivityLog.swift */; };
 		CCC1BA38213686C900029006 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA37213686C900029006 /* Clock.swift */; };
 		CCC1BA3A2136A64800029006 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA392136A64800029006 /* Period.swift */; };
-		CCCA08B8219DD79D00FEB649 /* Activity_Sampling_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA08B7219DD79D00FEB649 /* Activity_Sampling_Tests.swift */; };
 		CCCA08C4219DE9D500FEB649 /* PeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA08C3219DE9D500FEB649 /* PeriodTests.swift */; };
 		CCCA08C7219E268200FEB649 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = CCCA08C5219E268200FEB649 /* LICENSE.txt */; };
 		CCD9EF84213FC71600DCCDBF /* PreferencesDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD9EF83213FC71600DCCDBF /* PreferencesDialogController.swift */; };
@@ -24,6 +23,7 @@
 		CCE88AF121E272F60059531F /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE88AF021E272F60059531F /* Body.swift */; };
 		CCE88AF321E279D60059531F /* Head.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE88AF221E279D60059531F /* Head.swift */; };
 		CCE88AF521E52B4F0059531F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE88AF421E52B4F0059531F /* Preferences.swift */; };
+		CCE88AF721EA5EE60059531F /* UserAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE88AF621EA5EE60059531F /* UserAcceptanceTests.swift */; };
 		CCECDB3621A5EE8100265AE2 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCECDB3521A5EE8100265AE2 /* NotificationsController.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +50,6 @@
 		CCC1BA37213686C900029006 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		CCC1BA392136A64800029006 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		CCCA08B5219DD79D00FEB649 /* Activity Sampling Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Activity Sampling Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CCCA08B7219DD79D00FEB649 /* Activity_Sampling_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity_Sampling_Tests.swift; sourceTree = "<group>"; };
 		CCCA08B9219DD79D00FEB649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCCA08C3219DE9D500FEB649 /* PeriodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTests.swift; sourceTree = "<group>"; };
 		CCCA08C5219E268200FEB649 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -61,13 +60,14 @@
 		CCCA08DB219E274000FEB649 /* context.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = context.png; sourceTree = "<group>"; };
 		CCCA08DC219E274000FEB649 /* architecture.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = architecture.html; sourceTree = "<group>"; };
 		CCCA08DD219E274000FEB649 /* flow-design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flow-design.png"; sourceTree = "<group>"; };
-		CCCA08DE219E274000FEB649 /* user-acceptace-tests.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "user-acceptace-tests.md"; sourceTree = "<group>"; };
+		CCCA08DE219E274000FEB649 /* user-acceptance-tests.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "user-acceptance-tests.md"; sourceTree = "<group>"; };
 		CCD9EF83213FC71600DCCDBF /* PreferencesDialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesDialogController.swift; sourceTree = "<group>"; };
 		CCE6B29E213818C300941584 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		CCE88AEE21E264970059531F /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		CCE88AF021E272F60059531F /* Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
 		CCE88AF221E279D60059531F /* Head.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Head.swift; sourceTree = "<group>"; };
 		CCE88AF421E52B4F0059531F /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		CCE88AF621EA5EE60059531F /* UserAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAcceptanceTests.swift; sourceTree = "<group>"; };
 		CCECDB3521A5EE8100265AE2 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,8 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				CCCA08C2219DE9BF00FEB649 /* Domain */,
-				CCCA08B7219DD79D00FEB649 /* Activity_Sampling_Tests.swift */,
 				CCCA08B9219DD79D00FEB649 /* Info.plist */,
+				CCE88AF621EA5EE60059531F /* UserAcceptanceTests.swift */,
 			);
 			path = "Activity Sampling Tests";
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 				CCCA08DB219E274000FEB649 /* context.png */,
 				CCCA08D9219E274000FEB649 /* flow-design.graphml */,
 				CCCA08DD219E274000FEB649 /* flow-design.png */,
-				CCCA08DE219E274000FEB649 /* user-acceptace-tests.md */,
+				CCCA08DE219E274000FEB649 /* user-acceptance-tests.md */,
 			);
 			path = doc;
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCCA08C4219DE9D500FEB649 /* PeriodTests.swift in Sources */,
-				CCCA08B8219DD79D00FEB649 /* Activity_Sampling_Tests.swift in Sources */,
+				CCE88AF721EA5EE60059531F /* UserAcceptanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
