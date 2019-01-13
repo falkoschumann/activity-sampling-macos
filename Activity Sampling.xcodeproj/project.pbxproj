@@ -15,7 +15,6 @@
 		CCB67AFC213DC13000B12646 /* CSVActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB67AFB213DC13000B12646 /* CSVActivityLog.swift */; };
 		CCC1BA38213686C900029006 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA37213686C900029006 /* Clock.swift */; };
 		CCC1BA3A2136A64800029006 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1BA392136A64800029006 /* Period.swift */; };
-		CCCA08C4219DE9D500FEB649 /* PeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA08C3219DE9D500FEB649 /* PeriodTests.swift */; };
 		CCCA08C7219E268200FEB649 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = CCCA08C5219E268200FEB649 /* LICENSE.txt */; };
 		CCD9EF84213FC71600DCCDBF /* PreferencesDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD9EF83213FC71600DCCDBF /* PreferencesDialogController.swift */; };
 		CCE6B29F213818C300941584 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6B29E213818C300941584 /* Activity.swift */; };
@@ -51,7 +50,6 @@
 		CCC1BA392136A64800029006 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		CCCA08B5219DD79D00FEB649 /* Activity Sampling Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Activity Sampling Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCCA08B9219DD79D00FEB649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CCCA08C3219DE9D500FEB649 /* PeriodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTests.swift; sourceTree = "<group>"; };
 		CCCA08C5219E268200FEB649 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		CCCA08C6219E268200FEB649 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CCCA08D8219E274000FEB649 /* architecture.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = architecture.md; sourceTree = "<group>"; };
@@ -161,19 +159,10 @@
 		CCCA08B6219DD79D00FEB649 /* Activity Sampling Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CCCA08C2219DE9BF00FEB649 /* Domain */,
 				CCCA08B9219DD79D00FEB649 /* Info.plist */,
 				CCE88AF621EA5EE60059531F /* UserAcceptanceTests.swift */,
 			);
 			path = "Activity Sampling Tests";
-			sourceTree = "<group>";
-		};
-		CCCA08C2219DE9BF00FEB649 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				CCCA08C3219DE9D500FEB649 /* PeriodTests.swift */,
-			);
-			path = Domain;
 			sourceTree = "<group>";
 		};
 		CCCA08D7219E271A00FEB649 /* doc */ = {
@@ -317,7 +306,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCCA08C4219DE9D500FEB649 /* PeriodTests.swift in Sources */,
 				CCE88AF721EA5EE60059531F /* UserAcceptanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
