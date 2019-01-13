@@ -38,7 +38,7 @@ class ActivityLogDialogController: NSViewController {
     private var lastTimestamp: Date?
     
     private var isFirstActivity: Bool {
-        get {return lastActivityTitle.isEmpty }
+        get { return lastActivityTitle.isEmpty }
     }
     
     override func viewDidLoad() {
@@ -59,7 +59,7 @@ class ActivityLogDialogController: NSViewController {
     @IBAction func logActivity(_ sender: Any) {
         disableFormular()
         printCurrentDate(periodTimestamp)
-        let activity = Activity(timestamp: lastTimestamp!, duration: periodDuration, title: lastActivityTitle)
+        let activity = Activity(timestamp: periodTimestamp, duration: periodDuration, title: lastActivityTitle)
         printActivity(activity)
         head.write(activity: activity)
         
