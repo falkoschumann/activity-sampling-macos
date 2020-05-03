@@ -11,7 +11,7 @@
 *   Prüfen ob der aktuelle Zetraum abgelaufen ist.
     *   Wenn ja, den Nutzer nach seiner aktuellen Tätigkeit fragen.
 
-#### Interaktion Nutzer protoklliert Aktivität
+#### Interaktion Nutzer protokolliert Aktivität
 
 *   Zeitpunkt der Nachfrage und Aktivität auflisten.
 *   Aktivitäten nach Tag gruppieren.
