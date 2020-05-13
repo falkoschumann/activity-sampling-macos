@@ -17,7 +17,7 @@
 == Kontextabgrenzung
 
 .Kontextabgrenzung
-image::kontextabgrenzung.png[Kontextabgrenzung]
+image::Systemkontext.png[Kontextabgrenzung]
 
 Der Nutzer erfasst mit Activity Sampling seine Aktivitäten. Diese werden auf der
 Festplatte gesichert.
@@ -81,4 +81,4 @@ und die erfassten Daten leicht weiterverarbeitbar (z.B. Auswertung mit Excel).
 == Informelles Überblicksbild
 
 .Informelles Überblicksbild
-image::informelles-ueberblicksbild.png[Informelles Überblicksbild]
+image::Informelles-Überblicksbild.png[Informelles Überblicksbild]
