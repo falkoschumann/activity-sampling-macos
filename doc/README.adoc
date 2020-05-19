@@ -8,7 +8,7 @@
   erfassen.
 * Ich möchte beurteilen wofür ich meine Zeit verwende.
 * Ich kann nachweisen, wieviel Zeit ich für eine Aufgabe benötige.
-* Ich muss nicht meine Tätigkeiten aufgezeichnten Zeiten zuordnen, sondern ich
+* Ich muss nicht meine Tätigkeiten aufgezeichneten Zeiten zuordnen, sondern ich
   werde regelmäßig gefragt, welcher Tätigkeit ich gerade nachgehe.
 * Mit den erfassten Informationen kann ich ähnliche Aufgaben in Zukunft besser
   schätzen und ich kann entscheiden, wofür ich mehr oder weniger meiner Zeit
@@ -17,10 +17,7 @@
 == Kontextabgrenzung
 
 .Kontextabgrenzung
-image::Systemkontext.png[Kontextabgrenzung]
-
-Der Nutzer erfasst mit Activity Sampling seine Aktivitäten. Diese werden auf der
-Festplatte gesichert.
+image::Kontextabgrenzung.png[Kontextabgrenzung]
 
 == Architekturziele
 
