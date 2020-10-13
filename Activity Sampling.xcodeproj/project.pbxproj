@@ -45,6 +45,17 @@
 		CC25635121359B0400D59D17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC25635321359B0400D59D17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC25635421359B0400D59D17 /* Activity Sampling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Activity Sampling.entitlements"; sourceTree = "<group>"; };
+		CC847E85245F370F00EBE44F /* kontextabgrenzung.graphml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = kontextabgrenzung.graphml; sourceTree = "<group>"; };
+		CC847E86245F370F00EBE44F /* kontextabgrenzung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kontextabgrenzung.png; sourceTree = "<group>"; };
+		CC847E87245F370F00EBE44F /* user-stories.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "user-stories.md"; sourceTree = "<group>"; };
+		CC847E88245F370F00EBE44F /* informelles-ueberblicksbild.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "informelles-ueberblicksbild.png"; sourceTree = "<group>"; };
+		CC847E89245F370F00EBE44F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CC847E8A245F370F00EBE44F /* flow-design.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "flow-design.md"; sourceTree = "<group>"; };
+		CC847E8B245F370F00EBE44F /* flow-design-ui.graphml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "flow-design-ui.graphml"; sourceTree = "<group>"; };
+		CC847E8C245F370F00EBE44F /* architekturueberblick.adoc */ = {isa = PBXFileReference; lastKnownFileType = text; path = architekturueberblick.adoc; sourceTree = "<group>"; };
+		CC847E8D245F370F00EBE44F /* flow-design-ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flow-design-ui.png"; sourceTree = "<group>"; };
+		CC847E8E245F370F00EBE44F /* informelles-ueberblicksbild.graphml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "informelles-ueberblicksbild.graphml"; sourceTree = "<group>"; };
+		CC847E8F245F370F00EBE44F /* domain-design.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "domain-design.md"; sourceTree = "<group>"; };
 		CCB67AFB213DC13000B12646 /* CSVActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVActivityLog.swift; sourceTree = "<group>"; };
 		CCC1BA37213686C900029006 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		CCC1BA392136A64800029006 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
@@ -52,11 +63,9 @@
 		CCCA08B9219DD79D00FEB649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCCA08C5219E268200FEB649 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		CCCA08C6219E268200FEB649 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CCCA08D8219E274000FEB649 /* architecture.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = architecture.md; sourceTree = "<group>"; };
 		CCCA08D9219E274000FEB649 /* flow-design.graphml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "flow-design.graphml"; sourceTree = "<group>"; };
 		CCCA08DA219E274000FEB649 /* context.graphml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = context.graphml; sourceTree = "<group>"; };
 		CCCA08DB219E274000FEB649 /* context.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = context.png; sourceTree = "<group>"; };
-		CCCA08DC219E274000FEB649 /* architecture.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = architecture.html; sourceTree = "<group>"; };
 		CCCA08DD219E274000FEB649 /* flow-design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flow-design.png"; sourceTree = "<group>"; };
 		CCCA08DE219E274000FEB649 /* user-acceptance-tests.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "user-acceptance-tests.md"; sourceTree = "<group>"; };
 		CCD9EF83213FC71600DCCDBF /* PreferencesDialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesDialogController.swift; sourceTree = "<group>"; };
@@ -168,8 +177,17 @@
 		CCCA08D7219E271A00FEB649 /* doc */ = {
 			isa = PBXGroup;
 			children = (
-				CCCA08DC219E274000FEB649 /* architecture.html */,
-				CCCA08D8219E274000FEB649 /* architecture.md */,
+				CC847E8C245F370F00EBE44F /* architekturueberblick.adoc */,
+				CC847E8F245F370F00EBE44F /* domain-design.md */,
+				CC847E8B245F370F00EBE44F /* flow-design-ui.graphml */,
+				CC847E8D245F370F00EBE44F /* flow-design-ui.png */,
+				CC847E8A245F370F00EBE44F /* flow-design.md */,
+				CC847E8E245F370F00EBE44F /* informelles-ueberblicksbild.graphml */,
+				CC847E88245F370F00EBE44F /* informelles-ueberblicksbild.png */,
+				CC847E85245F370F00EBE44F /* kontextabgrenzung.graphml */,
+				CC847E86245F370F00EBE44F /* kontextabgrenzung.png */,
+				CC847E89245F370F00EBE44F /* README.md */,
+				CC847E87245F370F00EBE44F /* user-stories.md */,
 				CCCA08DA219E274000FEB649 /* context.graphml */,
 				CCCA08DB219E274000FEB649 /* context.png */,
 				CCCA08D9219E274000FEB649 /* flow-design.graphml */,

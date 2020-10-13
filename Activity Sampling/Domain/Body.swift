@@ -8,6 +8,14 @@
 
 import Foundation
 
+// TODO: Activity Log als Domain Object
+//   Erste Aktivität: Ja/Nein -> Fragen
+//   Selbe Aktivität: Ja/Nein -> Letzte merken
+
+// TODO: Activity Log Provider
+// TODO: Preferences Provider
+// TODO: Contribution: DMG mit Alias zum Programme-Ordner
+
 class Body {
     
     private let period = Period()
